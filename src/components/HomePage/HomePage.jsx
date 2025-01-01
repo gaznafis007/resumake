@@ -2,8 +2,12 @@ import React from 'react';
 import Header from '../Header/Header';
 import DefaultButton from '../DefaultButton/DefaultButton';
 import Image from 'next/image';
+import { getData } from '@/libs/getData';
+import FeatureCard from '../FeatureCard/FeatureCard';
 
-const HomePage = () => {
+const HomePage = async () => {
+    const features = await getData('/api/features');
+    console.log(features)
     const sectionOne = <>
         <h1 className="text-7xl text-violet-800 capitalize">
           turn your skills into opportunities
@@ -26,6 +30,11 @@ const HomePage = () => {
     return (
         <section className='mx-4 md:mx-12 mt-6'>
             <Header sectionOne={sectionOne} sectionTwo={sectionTwo}/>
+            <div className="mt-4 md:mt-8 grid grid-cols-1 grid-cols-5 gap-2">
+                {
+                    features?.map((feature, idx) =><FeatureCard key={idx} bgColor={feature?.bgColor} title={feature?.title} description={feature?.description} color={'text-white'}/>)
+                }
+            </div>
         </section>
     );
 };
