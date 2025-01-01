@@ -24,7 +24,7 @@ const Navbar = () => {
         }
     ]
     return (
-        <nav className="flex flex-row justify-between items-center p-4">
+        <nav className="flex flex-row justify-between items-center p-4 md:shadow-sm md:m-6">
             <h2 className="text-3xl font-semibold text-violet-800">ResuMake</h2>
             <ul className="hidden md:flex flex-row space-x-6">
                 {
