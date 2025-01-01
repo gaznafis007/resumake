@@ -2,10 +2,10 @@ import React from "react";
 import {
   FaFacebookF,
   FaDiscord,
-  FaTwitter,
   FaTwitch,
   FaWhatsapp,
 } from "react-icons/fa";
+import { RiTwitterXLine } from "react-icons/ri";
 const Footer = () => {
   return (
     <footer className="bg-purple-900 text-white p-16 md:p-32 mt-8 md:mt-16">
@@ -27,16 +27,16 @@ const Footer = () => {
             <p className="text-2xl text-purple-800 hover:text-blue-400 bg-slate-200 p-2 rounded-full">
               <FaFacebookF />
             </p>
-            <p className="text-2xl text-purple-800 hover:text-blue-400 bg-slate-200 p-2 rounded-full">
+            <p className="text-2xl text-purple-800 hover:text-green-400 bg-slate-200 p-2 rounded-full">
               <FaWhatsapp />
             </p>
-            <p className="text-2xl text-purple-800 hover:text-blue-400 bg-slate-200 p-2 rounded-full">
-              <FaTwitter />
+            <p className="text-2xl text-purple-800 hover:text-black bg-slate-200 p-2 rounded-full">
+              <RiTwitterXLine/>
             </p>
-            <p className="text-2xl text-purple-800 hover:text-blue-400 bg-slate-200 p-2 rounded-full">
+            <p className="text-2xl text-purple-800 hover:text-purple-600 bg-slate-200 p-2 rounded-full">
               <FaTwitch />
             </p>
-            <p className="text-2xl text-purple-800 hover:text-blue-400 bg-slate-200 p-2 rounded-full">
+            <p className="text-2xl text-purple-800 hover:text-blue-600 bg-slate-200 p-2 rounded-full">
               <FaDiscord />
             </p>
           </div>
