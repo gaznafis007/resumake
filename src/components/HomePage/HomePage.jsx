@@ -4,6 +4,7 @@ import DefaultButton from "../DefaultButton/DefaultButton";
 import Image from "next/image";
 import { getData } from "@/libs/getData";
 import FeatureCard from "../FeatureCard/FeatureCard";
+import Banner from "./Banner/Banner";
 
 const HomePage = async () => {
   const features = await getData("/api/features");
@@ -146,6 +147,7 @@ const HomePage = async () => {
         sectionOne={staticSectionOne}
         sectionTwo={staticSectionTwo}
       />
+      <Banner/>
     </section>
   );
 };
