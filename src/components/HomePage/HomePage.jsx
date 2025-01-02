@@ -5,6 +5,9 @@ import Image from "next/image";
 import { getData } from "@/libs/getData";
 import FeatureCard from "../FeatureCard/FeatureCard";
 import Banner from "./Banner/Banner";
+import Footer from "../Footer/Footer";
+import Navbar from "../Navbar/Navbar";
+import Link from "next/link";
 
 const HomePage = async () => {
   const features = await getData("/api/features");
@@ -25,7 +28,7 @@ const HomePage = async () => {
         you deserve.
       </p>
       <DefaultButton optionalStyle={"mt-4 md:mt-8"}>
-        Get started- it's free
+        <Link href={'/resumes'}>Get started- it's free</Link>
       </DefaultButton>
     </>
   );
@@ -122,6 +125,8 @@ const HomePage = async () => {
     </>
   );
   return (
+    <>
+    <Navbar/>
     <section className="mx-4 md:mx-8 mt-6">
       <Header sectionOne={sectionOne} sectionTwo={sectionTwo} />
       {features && (
@@ -149,6 +154,8 @@ const HomePage = async () => {
       />
       <Banner/>
     </section>
+    <Footer/>
+    </>
   );
 };
 

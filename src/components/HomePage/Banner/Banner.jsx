@@ -1,4 +1,5 @@
 import DefaultButton from '@/components/DefaultButton/DefaultButton';
+import Link from 'next/link';
 import React from 'react';
 import { FiArrowUpRight } from "react-icons/fi";
 
@@ -12,7 +13,7 @@ const Banner = () => {
             <DefaultButton optionalStyle={'mt-8'}>
                 <div className="flex flex-row space-x-2">
                 <FiArrowUpRight className='text-xl'/>
-                <p>Start with free</p>
+                <Link href={'/resumes'}>Start with free</Link>
                 </div>
             </DefaultButton>
         </section>

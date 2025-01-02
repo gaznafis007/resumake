@@ -35,7 +35,9 @@ const Navbar = () => {
                     ))
                 }
             </ul>
-            <DefaultButton optionalStyle={'hidden md:inline-block'}>Get Started</DefaultButton>
+            <DefaultButton optionalStyle={'hidden md:inline-block'}>
+                <Link href={'/resumes'}>Get Started</Link>
+            </DefaultButton>
             {!open && <HiMiniBars3 onClick={() =>setOpen(true)} className="text-3xl md:hidden text-violet-800"/>}
             {
                 open && <Modal position={'fixed top-12 right-8'} setOpen={setOpen}>
