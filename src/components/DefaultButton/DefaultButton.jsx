@@ -1,8 +1,9 @@
 import React from "react";
 
-const DefaultButton = ({ children, handler, params, optionalStyle }) => {
+const DefaultButton = ({ children, handler, params, optionalStyle, btnType }) => {
   return (
     <button
+    type={btnType}
       onClick={params ? () => handler(params) : handler}
       className={`rounded-md px-6 py-3 bg-violet-600 hover:bg-violet-800 text-white font-semibold ${optionalStyle}`}
     >
