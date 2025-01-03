@@ -1,5 +1,6 @@
 "use client";
 import Modal from "@/components/Modal/Modal";
+import PdfOutput from "@/components/PdfOutput/PdfOutput";
 import ResumeOutput from "@/components/ResumeOutput/ResumeOutput";
 import ResumePersonalInfo from "@/components/ResumePersonalInfo/ResumePersonalInfo";
 import ResumeTitle from "@/components/ResumeTitle/ResumeTitle";
@@ -10,6 +11,7 @@ import React, { useState } from "react";
 
 const Create = () => {
   const [activeSection, setActiveSection] = useState("");
+  const [activePdfView, setActivePdfView] = useState(false);
   return (
     <ResumeInfoProvider>
       <section className="p-6 flex flex-col md:flex-row gap-6">
@@ -23,15 +25,14 @@ const Create = () => {
           {/* Resume form */}
           <ResumePersonalInfo />
         </div>
+        {/* Resume's output */}
+        <section onClick={() =>setActiveSection('view')} className={`hidden md:block md:w-1/2 rounded-md bg-white shadow-xl cursor-zoom-in`}>
         <ResumeOutput />
+        </section>
       </section>
       {activeSection === "view" && (
-        <Modal setOpen={setActiveSection} index={'z-10'} position={'left-24 top-8'}>
-          <section className={`w-full h-full`}>
-            <div className='bg-white rounded-lg p-8'>
-            <h2 className={`text-3xl text-slate-800`}>This is Output</h2>
-            </div>
-        </section>
+        <Modal setOpen={setActiveSection} index={'z-10'} position={'left-6 top-8 mr-6'}>
+          <PdfOutput/>
         </Modal>
       )}
     </ResumeInfoProvider>
