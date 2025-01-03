@@ -50,7 +50,7 @@ const SideNav = ({ activeSection, setActiveSection }) => {
         </div>
         </div>
       </section>
-      <div className="fixed flex flex-col space-y-6 bottom-12 right-4 md:hidden">
+      <div className="fixed flex flex-col space-y-6 bottom-12 z-30 right-4 md:hidden">
       <div
           onClick={() => setActiveSection("content")}
           className={`flex flex-col cursor-pointer items-center p-4 rounded-full ${

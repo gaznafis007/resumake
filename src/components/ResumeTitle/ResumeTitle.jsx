@@ -15,7 +15,7 @@ const ResumeTitle = () => {
         setEdit(false);
     }
     return (
-        <div className='w-full bg-white p-4 rounded-lg flex flex-row justify-between'>
+        <section className='w-full bg-white p-4 rounded-lg flex flex-row justify-between'>
             <div className='flex flex-row space-x-2 items-center'>
             {
                 edit ? (
@@ -37,7 +37,7 @@ const ResumeTitle = () => {
                     <h2>Download</h2>
                 </div>
             </DefaultButton>
-        </div>
+        </section>
     );
 };
 
