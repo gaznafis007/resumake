@@ -53,15 +53,53 @@ const ResumePersonalInfoForm = () => {
   };
   const handleSocialLinkUsername = (event, link) =>{
     const username = event.target.value;
-    const updatedSocialLinks = socialLinks?.map(social => social?.name == link && {...social, username})
-    console.log(updatedSocialLinks)
-    setSocialLinks(updatedSocialLinks)
+    const updatedSocialLinks = socialLinks?.map((social, idx , links) => {
+        if(social?.name == link) {
+            const excludedLinks = links.filter(match => match?.name != link);
+            // console.log(excludedLinks)
+            const valid = {
+                ...social,
+                username
+            }
+            const updated = [...excludedLinks, valid];
+            // console.log(updated, "this is valid")
+            return updated
+            // return {...social, username}
+        }
+        else{
+            return
+        }
+  })
+    // console.log(updatedSocialLinks)
+    const updated = updatedSocialLinks.filter(item => item != undefined);
+    const updatedLinks = [...updated[0]];
+    // console.log(updatedLinks, "watching")
+    setSocialLinks(updatedLinks)
 }
   const handleSocialLinkUrl = (event, link) =>{
     const url = event.target.value;
-    const updatedSocialLinks = socialLinks?.map(social => social?.name == link && {...social, url})
-    console.log(updatedSocialLinks);
-    setSocialLinks(updatedSocialLinks);
+    const updatedSocialLinks = socialLinks?.map((social, idx , links) => {
+        if(social?.name == link) {
+            const excludedLinks = links.filter(match => match?.name != link);
+            // console.log(excludedLinks)
+            const valid = {
+                ...social,
+                url
+            }
+            const updated = [...excludedLinks, valid];
+            // console.log(updated, "this is valid")
+            return updated
+            // return {...social, username}
+        }
+        else{
+            return
+        }
+  })
+    // console.log(updatedSocialLinks)
+    const updated = updatedSocialLinks.filter(item => item != undefined);
+    const updatedLinks = [...updated[0]];
+    // console.log(updatedLinks, "watching")
+    setSocialLinks(updatedLinks)
 }
   return (
     <>
