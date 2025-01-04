@@ -11,7 +11,7 @@ import React, { useState } from "react";
 
 const Create = () => {
   const [activeSection, setActiveSection] = useState("");
-  const [activePdfView, setActivePdfView] = useState(false);
+
   return (
     <ResumeInfoProvider>
       <section className="p-6 flex flex-col md:flex-row gap-6">
@@ -20,7 +20,7 @@ const Create = () => {
           activeSection={activeSection}
           setActiveSection={setActiveSection}
         />
-        <div className="flex flex-col w-full md:w-4/12">
+        <div className="flex flex-col w-full md:w-5/12">
           <ResumeTitle />
           {/* Resume form */}
           <ResumePersonalInfo />

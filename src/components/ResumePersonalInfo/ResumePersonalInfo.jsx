@@ -19,7 +19,7 @@ const ResumePersonalInfo = () => {
             <Button
               handler={handleRemoveEditSection}
               style={
-                "text-white text-xl rounded-full p-3 bg-sky-500 hover:bg-emerald-500 mb-4"
+                "text-white text-xl rounded-full p-3 bg-purple-400 hover:bg-purple-500 mb-4"
               }
             >
               <RxCross2 />
@@ -29,7 +29,7 @@ const ResumePersonalInfo = () => {
               handler={setEditSection}
               params={"personalInfo"}
               style={
-                "text-white text-xl rounded-full p-3 bg-sky-500 hover:bg-emerald-500 mb-4"
+                "text-white text-xl rounded-full p-3 bg-purple-400 hover:bg-purple-500 mb-4"
               }
             >
               <FaEdit />
