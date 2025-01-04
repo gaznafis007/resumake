@@ -51,6 +51,18 @@ const ResumePersonalInfoForm = () => {
     }
     // console.log(socialLinks, 'after')
   };
+  const handleSocialLinkUsername = (event, link) =>{
+    const username = event.target.value;
+    const updatedSocialLinks = socialLinks?.map(social => social?.name == link && {...social, username})
+    console.log(updatedSocialLinks)
+    setSocialLinks(updatedSocialLinks)
+}
+  const handleSocialLinkUrl = (event, link) =>{
+    const url = event.target.value;
+    const updatedSocialLinks = socialLinks?.map(social => social?.name == link && {...social, url})
+    console.log(updatedSocialLinks);
+    setSocialLinks(updatedSocialLinks);
+}
   return (
     <>
       <h2 className="text-2xl text-purple-800 font-bold">
@@ -161,14 +173,14 @@ const ResumePersonalInfoForm = () => {
                           name={link?.name}
                           defaultValue={link?.username}
                           placeholder="Enter username"
-                          onChange={(event) => setAddress(event.target.value)}
+                          onChange={(event) => handleSocialLinkUsername(event, link?.name)}
                           className="border border-purple-800 rounded-lg p-2 bg-purple-100"
                         />
                         <input
                           type="text"
                           name={link?.name}
                           defaultValue={link?.url}
-                          onChange={(event) => setAddress(event.target.value)}
+                          onChange={(event) => handleSocialLinkUrl(event, link?.name)}
                           placeholder="Enter Url"
                           className="border border-purple-800 rounded-lg p-2 bg-purple-100"
                         />
