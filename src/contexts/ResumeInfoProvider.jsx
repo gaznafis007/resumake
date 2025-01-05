@@ -12,6 +12,8 @@ const ResumeInfoProvider = ({
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
     const [socialLinks, setSocialLinks] = useState([])
+    const [profileSection, setProfileSection] = useState(null)
+    const [sections, setSections] = useState(null)
     const value ={
         editSection,
         setEditSection,
@@ -21,12 +23,16 @@ const ResumeInfoProvider = ({
         phone,
         address,
         socialLinks,
+        profileSection,
+        sections,
         setFullName,
         setJobTitle,
         setEmail,
         setPhone,
         setAddress,
-        setSocialLinks
+        setSocialLinks,
+        setProfileSection,
+        setSections
     }
     return (
         <ResumeInfoContext.Provider value={value}>
