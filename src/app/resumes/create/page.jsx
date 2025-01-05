@@ -158,8 +158,7 @@ const contentSections = [
 const Create = () => {
   const [activeSection, setActiveSection] = useState("");
   const [open, setOpen] =useState(false);
-  const {sections, setSections} = useContext(ResumeInfoContext)
-  const [sectionCollapse, setSectionCollapse] = useState('')
+  const {sections,sectionCollapse, setSections, setSectionCollapse} = useContext(ResumeInfoContext)
 
   return (
     <>
