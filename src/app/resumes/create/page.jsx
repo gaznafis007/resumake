@@ -1,4 +1,6 @@
 "use client";
+import Button from "@/components/Button/Button";
+import Card from "@/components/Card/Card";
 import Modal from "@/components/Modal/Modal";
 import PdfOutput from "@/components/PdfOutput/PdfOutput";
 import ResumeOutput from "@/components/ResumeOutput/ResumeOutput";
@@ -8,9 +10,121 @@ import SideNav from "@/components/SideNav/SideNav";
 import ResumeInfoProvider from "@/contexts/ResumeInfoProvider";
 
 import React, { useState } from "react";
+import {
+  FaPlus,
+  FaUserCircle,
+  FaGraduationCap,
+  FaBriefcase,
+  FaTools,
+  FaLanguage,
+  FaCertificate,
+  FaHeart,
+  FaProjectDiagram,
+  FaBook,
+  FaTrophy,
+  FaUsers,
+  FaFileAlt,
+  FaUserFriends,
+  FaSignature,
+  FaPuzzlePiece
+} from "react-icons/fa";
+
+const contentSections = [
+  {
+    id: "profile",
+    title: "Profile",
+    description: "Make a great first impression by presenting yourself in a few sentences.",
+    icon: <FaUserCircle/>
+  },
+  {
+    id: "education",
+    title: "Education",
+    description: "Show off your primary education, college degrees & exchange semesters.",
+    icon: <FaGraduationCap/>
+  },
+  {
+    id: "professional-experience",
+    title: "Professional Experience",
+    description: "A place to highlight your professional experience - including internships.",
+    icon: <FaBriefcase/>
+  },
+  {
+    id: "skill",
+    title: "Skill",
+    description: "List your technical, managerial or soft skills in this section.",
+    icon: <FaTools/>
+  },
+  {
+    id: "language",
+    title: "Language",
+    description: "You speak more than one language? Make sure to list them here.",
+    icon: <FaLanguage/>
+  },
+  {
+    id: "certificate",
+    title: "Certificate",
+    description: "Drivers licenses and other industry-specific certificates you have belong here.",
+    icon: <FaCertificate/>
+  },
+  {
+    id: "interest",
+    title: "Interest",
+    description: "Do you have interests that align with your career aspiration?",
+    icon: <FaHeart/>
+  },
+  {
+    id: "project",
+    title: "Project",
+    description: "Worked on a particular challenging project in the past? Mention it here.",
+    icon: <FaProjectDiagram/>
+  },
+  {
+    id: "course",
+    title: "Course",
+    description: "Did you complete MOOCs or an evening course? Show them off in this section.",
+    icon: <FaBook/>
+  },
+  {
+    id: "award",
+    title: "Award",
+    description: "Awards like student competitions or industry accolades belong here.",
+    icon: <FaTrophy/>
+  },
+  {
+    id: "organization",
+    title: "Organization",
+    description: "If you volunteer or participate in a good cause, why not state it?",
+    icon: <FaUsers/>
+  },
+  {
+    id: "publication",
+    title: "Publication",
+    description: "Academic publications or book releases have a dedicated place here.",
+    icon: <FaFileAlt/>
+  },
+  {
+    id: "reference",
+    title: "Reference",
+    description: "If you have former colleagues or bosses that vouch for you, list them.",
+    icon: <FaUserFriends/>
+  },
+  {
+    id: "declaration",
+    title: "Declaration",
+    description: "You need a declaration with signature?",
+    icon: <FaSignature/>
+  },
+  {
+    id: "custom",
+    title: "Custom",
+    description: "You didn't find what you are looking for? Or you want to combine two sections to save space?",
+    icon: <FaPuzzlePiece/>
+  }
+];
 
 const Create = () => {
   const [activeSection, setActiveSection] = useState("");
+  const [open, setOpen] =useState(false)
 
   return (
     <ResumeInfoProvider>
@@ -24,14 +138,36 @@ const Create = () => {
           <ResumeTitle />
           {/* Resume form */}
           <ResumePersonalInfo />
+          <Button handler={setOpen} params={true} style={'rounded-lg px-8 py-3 bg-purple-600 hover:bg-purple-800 mt-4 md:mt-8'}>
+            <div className="flex flex-row space-x-2 items-center text-xl text-white capitalize justify-center">
+              <FaPlus/>
+              <p>add content</p>
+            </div>
+          </Button>
         </div>
         {/* Resume's output */}
         <section onClick={() =>setActiveSection('view')} className={`hidden md:block md:w-1/2 rounded-md bg-white shadow-xl cursor-zoom-in`}>
         <ResumeOutput />
         </section>
       </section>
+      {
+        open && (
+          <Modal setOpen={setOpen} index={'z-10'} position={'left-6 top-6 mr-6'}>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+            {
+              contentSections?.map(section => <Card key={section?.id} style={'cursor-pointer'} title={
+                <div className="flex flex-row space-x-2 items-center">
+                  {section?.icon}
+                  <span>{section?.title}</span>
+                </div>
+              } description={section?.description}/>)
+            }
+            </div>
+          </Modal>
+        )
+      }
       {activeSection === "view" && (
-        <Modal setOpen={setActiveSection} index={'z-10'} position={'left-6 top-8 mr-6'}>
+        <Modal setOpen={setActiveSection} index={'z-10'} position={'left-6 top-6 mr-6'}>
           <PdfOutput/>
         </Modal>
       )}

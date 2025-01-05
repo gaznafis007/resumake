@@ -33,7 +33,7 @@ const ResumePersonalInfoForm = () => {
   const handleRemoveFromActiveSocials = (linkName) =>{
     const updatedActiveSocial = activeSocials.filter(link => link != linkName?.name);
     const updatedSocialLinks = newSocialLinks.filter(link => link?.name != linkName?.name);
-    console.log(updatedActiveSocial)
+    // console.log(updatedActiveSocial)
     setActiveSocials(updatedActiveSocial);
     setSocialLinks(updatedSocialLinks);
   }
