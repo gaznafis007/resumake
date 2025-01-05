@@ -41,6 +41,9 @@ import ResumeEditCourse from "@/components/ResumeEditCourse/ResumeEditCourse";
 import ResumeEditAward from "@/components/ResumeEditAward/ResumeEditAward";
 import ResumeEditOrganization from "@/components/ResumeEditOrganization/ResumeEditOrganization";
 import ResumeEditPublication from "@/components/ResumeEditPublication/ResumeEditPublication";
+import ResumeEditReference from "@/components/ResumeEditRefernece/ResumeEditReference";
+import ResumeEditDeclaration from "@/components/ResumeEditDeclaration/ResumeEditDeclaration";
+import ResumeEditCustomSection from "@/components/ResumeEditCustomSection/ResumeEditCustomSection";
 
 const contentSections = [
   {
@@ -147,7 +150,7 @@ const contentSections = [
     description:
       "You didn't find what you are looking for? Or you want to combine two sections to save space?",
     icon: <FaPuzzlePiece />,
-    component: <ResumeEditCustom />, // Corresponding component
+    component: <ResumeEditCustomSection />, // Corresponding component
   },
 ];
 
