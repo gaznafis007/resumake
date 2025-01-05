@@ -158,7 +158,7 @@ const contentSections = [
 const Create = () => {
   const [activeSection, setActiveSection] = useState("");
   const [open, setOpen] =useState(false);
-  const {profileSection,sections, setSections, setProfileSection} = useContext(ResumeInfoContext)
+  const {sections, setSections} = useContext(ResumeInfoContext)
   const [sectionCollapse, setSectionCollapse] = useState('')
 
   return (
@@ -184,7 +184,7 @@ const Create = () => {
                   {section?.icon}
                   <h2 className="text-2xl">{section?.title}</h2>
                   </div>
-                  {sectionCollapse == section?.title ?<IoIosArrowUp onClick={() => setSectionCollapse('')}/> :<IoIosArrowDown onClick={() => setSectionCollapse(section?.title)}/>}
+                  {sectionCollapse == section?.title ?<IoIosArrowUp className="cursor-pointer" onClick={() => setSectionCollapse('')}/> :<IoIosArrowDown className="cursor-pointer" onClick={() => setSectionCollapse(section?.title)}/>}
                 </div>
                 {
                   sectionCollapse == section?.title &&  (section?.component)
