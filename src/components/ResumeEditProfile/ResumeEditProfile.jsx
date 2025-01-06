@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import DefaultButton from "../DefaultButton/DefaultButton";
 import Button from "../Button/Button";
 import { FaTrash } from "react-icons/fa";
+import SaveAndDeleteSection from "../SaveAndDeleteSection/SaveAndDeleteSection";
 
 const ResumeEditProfile = () => {
   const { profileSection, setProfileSection, setSectionCollapse } = useContext(ResumeInfoContext);
@@ -32,10 +33,7 @@ const ResumeEditProfile = () => {
           placeholder="Write a short summary about yourself"
         ></textarea>
       </div>
-        <div className="flex flex-row justify-end items-center space-x-2 mt-2">
-        <DefaultButton handler={handleProfileSection} optionalStyle={'mt-2'}>Save</DefaultButton>
-        <Button handler={removeProfileSection} style={'bg-red-100 hover:bg-red-200 text-red-600 px-6 py-3 rounded-md'}><FaTrash/></Button>
-        </div>
+      <SaveAndDeleteSection handleSave={handleProfileSection} handleRemove={removeProfileSection} />
     </div>
   );
 };

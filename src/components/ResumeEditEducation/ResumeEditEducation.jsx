@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { FaTrash } from "react-icons/fa";
 import Button from "../Button/Button";
 import DefaultButton from "../DefaultButton/DefaultButton";
+import SaveAndDeleteSection from "../SaveAndDeleteSection/SaveAndDeleteSection";
 
 const ResumeEditEducation = () => {
     const {educationSection, setEducationSection, setSectionCollapse} = useContext(ResumeInfoContext)
@@ -11,12 +12,13 @@ const ResumeEditEducation = () => {
         setSectionCollapse('')
     }
     const removeEducationSection = () =>{
+
         setEducationSection(null)
     }
   return (
     <div className="mt-4">
       <div className="flex flex-col space-y-2">
-        <h2 className="text-2xl font-semibold capitalize">enter your latest education</h2>
+        <h2 className="text-2xl font-semibold text-purple-800 capitalize">enter your latest education</h2>
         <div className="flex flex-col space-y-2">
           <label className="text-purple-800 font-semibold">Degree</label>
           <input
@@ -122,10 +124,7 @@ const ResumeEditEducation = () => {
         </div>
         </div>
       </div>
-      <div className="flex flex-row justify-end items-center space-x-2 mt-2">
-        <DefaultButton handler={handleEducationSection} optionalStyle={'mt-2'}>Save</DefaultButton>
-        <Button handler={removeEducationSection} style={'bg-red-100 hover:bg-red-200 text-red-600 px-6 py-3 rounded-md'}><FaTrash/></Button>
-        </div>
+      <SaveAndDeleteSection handleSave={handleEducationSection} handleRemove={removeEducationSection} />
     </div>
   );
 };
