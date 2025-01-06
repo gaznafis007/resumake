@@ -1,6 +1,18 @@
-import React from "react";
+import { ResumeInfoContext } from "@/contexts/ResumeInfoProvider";
+import React, { useContext } from "react";
+import { FaTrash } from "react-icons/fa";
+import Button from "../Button/Button";
+import DefaultButton from "../DefaultButton/DefaultButton";
 
 const ResumeEditEducation = () => {
+    const {educationSection, setEducationSection, setSectionCollapse} = useContext(ResumeInfoContext)
+    let educationDetails ={...educationSection}
+    const handleEducationSection = () =>{
+        setSectionCollapse('')
+    }
+    const removeEducationSection = () =>{
+        setEducationSection(null)
+    }
   return (
     <div className="mt-4">
       <div className="flex flex-col space-y-2">
@@ -10,6 +22,13 @@ const ResumeEditEducation = () => {
           <input
             type="text"
             name="degree"
+            defaultValue={educationSection?.degree}
+            onChange={(event) => {
+                const degreeName = event.target.value;
+                educationDetails.degree = degreeName;
+                console.log(educationDetails);
+                setEducationSection(educationDetails);
+            }}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
             placeholder="Enter your degree"
           />
@@ -19,6 +38,13 @@ const ResumeEditEducation = () => {
           <input
             type="text"
             name="school"
+            defaultValue={educationSection?.school}
+            onChange={(event) => {
+                const degreeName = event.target.value;
+                educationDetails.school = degreeName;
+                console.log(educationDetails);
+                setEducationSection(educationDetails);
+            }}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
             placeholder="Enter school name"
           />
@@ -30,6 +56,13 @@ const ResumeEditEducation = () => {
           <input
             type="text"
             name="city"
+            defaultValue={educationSection?.city}
+            onChange={(event) => {
+                const degreeName = event.target.value;
+                educationDetails.city = degreeName;
+                console.log(educationDetails);
+                setEducationSection(educationDetails);
+            }}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
             placeholder="Enter your city"
           />
@@ -40,6 +73,13 @@ const ResumeEditEducation = () => {
           <input
             type="text"
             name="country"
+            defaultValue={educationSection?.country}
+            onChange={(event) => {
+                const degreeName = event.target.value;
+                educationDetails.country = degreeName;
+                console.log(educationDetails);
+                setEducationSection(educationDetails);
+            }}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
             placeholder="Enter your country"
           />
@@ -52,6 +92,13 @@ const ResumeEditEducation = () => {
           <input
             type="date"
             name="startDate"
+            defaultValue={educationSection?.startDate}
+            onChange={(event) => {
+                const degreeName = event.target.value;
+                educationDetails.startDate = degreeName;
+                console.log(educationDetails);
+                setEducationSection(educationDetails);
+            }}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
             
           />
@@ -62,12 +109,23 @@ const ResumeEditEducation = () => {
           <input
             type="date"
             name="endDate"
+            defaultValue={educationSection?.endDate}
+            onChange={(event) => {
+                const degreeName = event.target.value;
+                educationDetails.endDate = degreeName;
+                console.log(educationDetails);
+                setEducationSection(educationDetails);
+            }}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
             
           />
         </div>
         </div>
       </div>
+      <div className="flex flex-row justify-end items-center space-x-2 mt-2">
+        <DefaultButton handler={handleEducationSection} optionalStyle={'mt-2'}>Save</DefaultButton>
+        <Button handler={removeEducationSection} style={'bg-red-100 hover:bg-red-200 text-red-600 px-6 py-3 rounded-md'}><FaTrash/></Button>
+        </div>
     </div>
   );
 };
