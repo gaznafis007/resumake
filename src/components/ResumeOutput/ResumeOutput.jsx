@@ -14,6 +14,7 @@ const ResumeOutput = () => {
     address,
     socialLinks,
     profileSection,
+    educationSection
   } = useContext(ResumeInfoContext);
   // console.log(socialLinks)
   console.log(profileSection);
@@ -97,6 +98,34 @@ const ResumeOutput = () => {
             Profile
           </h3>
           <p className="mt-1 text-slate-800 text-justify">{profileSection?.description}</p>
+        </div>
+      )}
+      {educationSection && (
+        <div className="mt-2 space-y-1">
+          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+            Education
+          </h3>
+          <div className="flex flex-row justify-between">
+            <p className="text-zinc-800 text-sm">
+              <span className="font-bold">{educationSection?.degree}</span>{educationSection?.school && <span className="font-thin"><i>, {educationSection?.school}</i></span>}
+            </p>
+            <div className="flex flex-col space-y-1 text-zinc-800 items-end">
+              {
+                (educationSection?.startDate || educationSection?.endDate) && (
+                  <p className="text-sm">
+                    {educationSection?.startDate} - {educationSection?.endDate}
+                  </p>
+                )
+              }
+              {
+                (educationSection?.city || educationSection?.country) && (
+                  <p className="text-sm">
+                    <span>{educationSection?.city}</span>{educationSection?.country && <span className="font-thin">, {educationSection?.country}</span>}
+                  </p>
+                )
+              }
+            </div>
+          </div>
         </div>
       )}
     </div>
