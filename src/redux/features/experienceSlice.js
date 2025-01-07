@@ -8,7 +8,7 @@ const experienceSlice = createSlice({
     reducers: {
         addExperience: (state) =>{
             const newExperiences = {
-                id: Date.now(),
+            id: Date.now(),
             title: '',
             company: '',
             city: '',
@@ -20,14 +20,14 @@ const experienceSlice = createSlice({
         },
         updateExperience: (state, {payload}) =>{
             const {id, field, value} = payload;
-            const experience = state.experiences.find((exp) => exp?.id == id);
+            const experience = state.find((exp) => exp?.id == id);
             if(experience){
                 experience[field] = value
             }
         },
         removeExperience: (state,{payload}) =>{
-            const id = payload
-            state.experiences = state.experiences.filter((exp) => exp.id != id)
+            
+            return state?.filter((exp) => exp.id != payload)
         }
     }
 })

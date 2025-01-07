@@ -2,24 +2,43 @@
 import { ResumeInfoContext } from '@/contexts/ResumeInfoProvider';
 import React, { useContext } from 'react';
 import SaveAndDeleteSection from '../SaveAndDeleteSection/SaveAndDeleteSection';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import DefaultButton from '../DefaultButton/DefaultButton';
+import { FaPlus } from 'react-icons/fa';
+import { addExperience, removeExperience } from '@/redux/features/experienceSlice';
 
 const ResumeEditExperience = () => {
-    const {experience, setExperience, setSectionCollapse} = useContext(ResumeInfoContext)
+    const { setExperience, setSectionCollapse} = useContext(ResumeInfoContext)
     const dispatch = useDispatch()
+    const experiences = useSelector((state) => state.experiences);
+    console.log(experiences);
     const handleExperienceSection = () =>{
         setSectionCollapse('')
     }
-    const removeExperienceSection = () =>{
-
-        setExperience(null)
+    const removeExperienceSection = (id) =>{
+      dispatch(removeExperience(id))
     }
-    let experienceDetails = {...experience}
+    let experienceDetails = {}
+    const handleAddExperience = () =>{
+      dispatch(addExperience())
+    }
     return (
         <div className="mt-4">
-      <div className="flex flex-col space-y-2">
-        <h2 className="text-2xl font-semibold text-purple-800 capitalize">enter your latest education</h2>
-        <div className="flex flex-col space-y-2">
+          <DefaultButton handler={handleAddExperience}>
+            <div className="flex flex-row items-center space-x-2">
+              <FaPlus/>
+              <p>
+              Add Experiences
+              </p>
+            </div>
+          </DefaultButton>
+      {
+        experiences && (
+          experiences?.map( (experience) =>(
+            <>
+              <div key={experience?.id} className="flex flex-col space-y-2">
+              <h2 className="text-2xl font-semibold text-purple-800 capitalize">enter your education</h2>
+              <div className="flex flex-col space-y-2">
           <label className="text-purple-800 font-semibold">Job Title</label>
           <input
             type="text"
@@ -123,8 +142,12 @@ const ResumeEditExperience = () => {
           />
         </div>
         </div>
-      </div>
-      <SaveAndDeleteSection handleSave={handleExperienceSection} handleRemove={removeExperienceSection} />
+            </div>
+            <SaveAndDeleteSection handleSave={handleExperienceSection} handleRemove={removeExperienceSection} removeParams ={experience.id} />
+            </>
+          ))
+        )
+      }
     </div>
     );
 };

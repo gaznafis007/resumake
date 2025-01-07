@@ -3,11 +3,11 @@ import DefaultButton from '../DefaultButton/DefaultButton';
 import { FaTrash } from 'react-icons/fa';
 import Button from '../Button/Button';
 
-const SaveAndDeleteSection = ({handleSave, handleRemove}) => {
+const SaveAndDeleteSection = ({handleSave, handleRemove, removeParams}) => {
     return (
         <div className="flex flex-row justify-end items-center space-x-2 mt-2">
         <DefaultButton handler={handleSave}>Save</DefaultButton>
-        <Button handler={handleRemove} style={'bg-red-100 hover:bg-red-200 text-red-600 px-6 py-3 rounded-md'}><FaTrash/></Button>
+        <Button handler={handleRemove} params={removeParams} style={'bg-red-100 hover:bg-red-200 text-red-600 px-6 py-3 rounded-md'}><FaTrash/></Button>
     </div>
     );
 };
