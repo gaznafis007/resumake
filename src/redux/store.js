@@ -9,6 +9,7 @@ import certificateReducer from './features/certificateSlice.js'
 import interestReducer from './features/interestSlice.js'
 import projectReducer from './features/projectSlice.js'
 import courseReducer from './features/courseSlice.js'
+import awardReducer from './features/awardSlice.js'
 
 
 export const store = configureStore({
@@ -19,6 +20,7 @@ export const store = configureStore({
         projects: projectReducer,
         educations: educationReducer,
         courses: courseReducer,
+        awards: awardReducer,
         languages: languageReducer,
         certificates: certificateReducer,
         interests: interestReducer
