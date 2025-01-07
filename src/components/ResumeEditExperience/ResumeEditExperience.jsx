@@ -12,10 +12,10 @@ import {
 } from "@/redux/features/experienceSlice";
 
 const ResumeEditExperience = () => {
-  const { setExperience, setSectionCollapse } = useContext(ResumeInfoContext);
+  const { setSectionCollapse } = useContext(ResumeInfoContext);
   const dispatch = useDispatch();
   const experiences = useSelector((state) => state.experiences);
-  console.log(experiences);
+  // console.log(experiences);
   const handleExperienceSection = () => {
     setSectionCollapse("");
   };
@@ -35,7 +35,7 @@ const ResumeEditExperience = () => {
           <>
             <div key={experience?.id} className="flex flex-col space-y-2">
               <h2 className="text-2xl font-semibold text-purple-800 capitalize">
-                enter your education
+                enter your professional experiences
               </h2>
               <div className="flex flex-col space-y-2">
                 <label className="text-purple-800 font-semibold">

@@ -14,7 +14,6 @@ const ResumeEditEducation = () => {
         setSectionCollapse('')
     }
     const removeEducationSection = (id) =>{
-
         dispatch(removeEducation(id))
     }
     const handleAddEducation = () =>{

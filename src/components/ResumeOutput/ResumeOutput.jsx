@@ -9,19 +9,12 @@ import Experience from "../Outputs/Experience";
 import Education from "../Outputs/Education";
 
 const ResumeOutput = () => {
-  const {
-    fullName,
-    jobTitle,
-    email,
-    phone,
-    address,
-    socialLinks,
-    profileSection,
-    educationSection
-  } = useContext(ResumeInfoContext);
+  const {} = useContext(ResumeInfoContext);
   // console.log(socialLinks)
   // console.log(profileSection);
-  const {profile, experiences, educations} = useSelector((state) =>state)
+  const { profile, experiences, skills, educations } = useSelector(
+    (state) => state
+  );
   // console.log(experiences)
   return (
     <div className="p-8">
@@ -61,7 +54,7 @@ const ResumeOutput = () => {
               className={`grid gap-x-2 gap-y-1 ${
                 profile?.socialLinks.length > 3
                   ? "grid-cols-3"
-                  : `grid-cols-${socialLinks.length} place-content-center`
+                  : `grid-cols-${profile?.socialLinks.length} place-content-center`
               }`}
             >
               {profile?.socialLinks?.map((link) => (
@@ -102,7 +95,9 @@ const ResumeOutput = () => {
           <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
             Profile
           </h3>
-          <p className="mt-1 text-slate-800 text-justify">{profile?.description}</p>
+          <p className="mt-1 text-slate-800 text-justify">
+            {profile?.description}
+          </p>
         </div>
       )}
       {experiences[0] && (
@@ -110,9 +105,19 @@ const ResumeOutput = () => {
           <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
             Experience
           </h3>
-          {
+          {experiences?.map((experience) => (
+            <Experience key={experience?.id} experience={experience} />
+          ))}
+        </div>
+      )}
+      {skills.expertise[0] && (
+        <div className="mt-2 flex flex-col space-y-2">
+          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+            Skills
+          </h3>
+          {/* {
             experiences?.map((experience) => <Experience key={experience?.id} experience={experience}/>)
-          }
+          } */}
         </div>
       )}
       {educations[0] && (
@@ -120,9 +125,9 @@ const ResumeOutput = () => {
           <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
             Education
           </h3>
-          {
-            educations?.map((education) => <Education key={education?.id} education={education}/>)
-          }
+          {educations?.map((education) => (
+            <Education key={education?.id} education={education} />
+          ))}
         </div>
       )}
     </div>

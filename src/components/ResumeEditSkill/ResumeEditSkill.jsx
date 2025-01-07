@@ -2,8 +2,8 @@ import React from 'react';
 
 const ResumeEditSkill = () => {
     return (
-        <div>
-            <h2 className="text-2xl font-semibold">Edit Skill</h2>
+        <div className='mt-4'>
+            <h2 className="text-2xl font-semibold text-purple-800 capitalize">edit your skills</h2>
         </div>
     );
 };
