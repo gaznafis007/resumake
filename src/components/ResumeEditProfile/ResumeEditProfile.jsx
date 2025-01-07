@@ -8,26 +8,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProfile } from "@/redux/features/profileSlice";
 
 const ResumeEditProfile = () => {
-  const { profileSection, setProfileSection, setSectionCollapse } = useContext(ResumeInfoContext);
+  const { setSectionCollapse } = useContext(ResumeInfoContext);
   const profile = useSelector((state) => state.profile)
   const dispatch = useDispatch()
   const removeProfileSection = () =>{
     let field = 'description';
-    let value = 'acs'
+    let value = ''
     dispatch(updateProfile({field, value}))
-    setProfileSection(null);
   }
   const handleProfileSection = () =>{
     setSectionCollapse('')
   }
   const handleProfileSummary = (field, value) => {
     dispatch(updateProfile({field, value}))
-    // const summary = event.target.value;
-    // console.log(summary);
-    // let newProfile = {
-    //   description: summary,
-    // };
-    // setProfileSection(newProfile);
   };
   return (
     <div className="text-purple-800 mt-3">

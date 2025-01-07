@@ -16,9 +16,27 @@ const profileSlice = createSlice({
         updateProfile: (state, {payload}) =>{
             const {field, value} = payload;
             state[field] = value
+        },
+        updateSocialLink: (state, {payload}) =>{
+            let newLink= {
+                id: Date.now(),
+                name: payload,
+            }
+            state.socialLinks.push(newLink)
+        },
+        updateSocialLinkUsernameAndUrl: (state, {payload}) =>{
+            const {id, field, value} = payload;
+            const socialLink = state.socialLinks?.find((link) => link?.id == id);
+            if(socialLink){
+                socialLink[field] = value
+                console.log(socialLink)
+            }
+        },
+        removeSocialLink: (state, {payload}) =>{
+            state.socialLinks = state?.socialLinks?.filter((link) => link?.id != payload)
         }
     }
 })
 
-export const {updateProfile} = profileSlice.actions
+export const {updateProfile, updateSocialLink,updateSocialLinkUsernameAndUrl, removeSocialLink} = profileSlice.actions
 export default profileSlice.reducer

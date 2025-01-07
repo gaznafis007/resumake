@@ -22,7 +22,7 @@ const ResumeOutput = () => {
   // console.log(socialLinks)
   // console.log(profileSection);
   const {profile, experiences, educations} = useSelector((state) =>state)
-  console.log(experiences)
+  // console.log(experiences)
   return (
     <div className="p-8">
       {/* Personal Info */}
@@ -30,43 +30,43 @@ const ResumeOutput = () => {
         <h2
           className={`text-2xl text-zinc-800 text-center font-bold capitalize`}
         >
-          {fullName}
+          {profile?.fullName}
         </h2>
         <h2 className={`text-xl text-zinc-800 text-center capitalize`}>
-          {jobTitle}
+          {profile?.jobTitle}
         </h2>
         <div className="flex flex-row items-center justify-center space-x-3 mt-2">
-          {email && (
+          {profile?.email && (
             <div className="flex flex-row items-center space-x-2">
               <MdEmail className="text-zinc-800" />
-              <p className="text-zinc-800">{email}</p>
+              <p className="text-zinc-800">{profile?.email}</p>
             </div>
           )}
-          {phone && (
+          {profile?.phone && (
             <div className="flex flex-row items-center space-x-2">
               <MdCall className="text-zinc-800" />
-              <p className="text-zinc-800">{phone}</p>
+              <p className="text-zinc-800">{profile?.phone}</p>
             </div>
           )}
-          {address && (
+          {profile?.address && (
             <div className="flex flex-row  items-center space-x-2">
               <FaLocationDot className="text-zinc-800" />
-              <p className="text-zinc-800">{address}</p>
+              <p className="text-zinc-800">{profile?.address}</p>
             </div>
           )}
         </div>
-        {socialLinks && (
+        {profile?.socialLinks && (
           <div className="flex flex-col items-center mt-2">
             <div
               className={`grid gap-x-2 gap-y-1 ${
-                socialLinks.length > 3
+                profile?.socialLinks.length > 3
                   ? "grid-cols-3"
                   : `grid-cols-${socialLinks.length} place-content-center`
               }`}
             >
-              {socialLinks?.map((link, idx) => (
+              {profile?.socialLinks?.map((link) => (
                 <div
-                  key={idx}
+                  key={link?.id}
                   className="flex flex-row  items-center space-x-2"
                 >
                   {link?.name == "Website" && (

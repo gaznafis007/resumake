@@ -3,6 +3,8 @@ import DefaultButton from "../DefaultButton/DefaultButton";
 import { ResumeInfoContext } from "@/contexts/ResumeInfoProvider";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import Button from "../Button/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { removeSocialLink, updateProfile, updateSocialLink, updateSocialLinkUsernameAndUrl } from "@/redux/features/profileSlice";
 
 const ResumePersonalInfoForm = () => {
   const {
@@ -20,7 +22,10 @@ const ResumePersonalInfoForm = () => {
     setEditSection,
     setSocialLinks,
   } = useContext(ResumeInfoContext);
-  let newSocialLinks = [...socialLinks];
+  const profile = useSelector((state) => state.profile)
+  // let newSocialLinks = [...profile?.socialLinks];
+  // console.log(profile?.socialLinks, 'socials')
+  const dispatch = useDispatch()
   const socials = [
     "Website",
     "LinkedIn",
@@ -31,11 +36,10 @@ const ResumePersonalInfoForm = () => {
   ];
   const [activeSocials, setActiveSocials] = useState([]);
   const handleRemoveFromActiveSocials = (linkName) =>{
-    const updatedActiveSocial = activeSocials.filter(link => link != linkName?.name);
-    const updatedSocialLinks = newSocialLinks.filter(link => link?.name != linkName?.name);
-    // console.log(updatedActiveSocial)
+    const updatedActiveSocial = activeSocials.filter(link => link != linkName?.name);    
     setActiveSocials(updatedActiveSocial);
-    setSocialLinks(updatedSocialLinks);
+    dispatch(removeSocialLink(linkName?.id))
+    profile?.socialLinks
   }
   const handlePersonalInfo = (params) => {
     setEditSection("");
@@ -43,63 +47,68 @@ const ResumePersonalInfoForm = () => {
   const handleSocialLinkActivation = (linkType) => {
     // console.log(socialLinks, 'before')
     if (!activeSocials.includes(linkType)) {
+      dispatch(updateSocialLink(linkType))
       const link = {};
       link.name = linkType;
-      newSocialLinks = [...socialLinks, link];
       setActiveSocials([...activeSocials, linkType])
-      setSocialLinks(newSocialLinks);
     }
     // console.log(socialLinks, 'after')
   };
-  const handleSocialLinkUsername = (event, link) =>{
-    const username = event.target.value;
-    const updatedSocialLinks = socialLinks?.map((social, idx , links) => {
-        if(social?.name == link) {
-            const excludedLinks = links.filter(match => match?.name != link);
-            // console.log(excludedLinks)
-            const valid = {
-                ...social,
-                username
-            }
-            const updated = [...excludedLinks, valid];
-            // console.log(updated, "this is valid")
-            return updated
-            // return {...social, username}
-        }
-        else{
-            return
-        }
-  })
+  const handleSocialLinkUsername = (id,field, value) =>{
+    console.log(id, value)
+    dispatch(updateSocialLinkUsernameAndUrl({id, field, value}))
+    // const username = event.target.value;
+    // const updatedSocialLinks = socialLinks?.map((social, idx , links) => {
+    //     if(social?.name == link) {
+    //         const excludedLinks = links.filter(match => match?.name != link);
+    //         console.log(excludedLinks)
+    //         const valid = {
+    //             ...social,
+    //             username
+    //         }
+    //         const updated = [...excludedLinks, valid];
+    //         console.log(updated, "this is valid")
+    //         return updated
+    //         return {...social, username}
+    //     }
+    //     else{
+    //         return
+    //     }
+  // })
     // console.log(updatedSocialLinks)
-    const updated = updatedSocialLinks.filter(item => item != undefined);
-    const updatedLinks = [...updated[0]];
+    // const updated = updatedSocialLinks.filter(item => item != undefined);
+    // const updatedLinks = [...updated[0]];
     // console.log(updatedLinks, "watching")
-    setSocialLinks(updatedLinks)
+    // setSocialLinks(updatedLinks)
 }
-  const handleSocialLinkUrl = (event, link) =>{
-    const url = event.target.value;
-    const updatedSocialLinks = socialLinks?.map((social, idx , links) => {
-        if(social?.name == link) {
-            const excludedLinks = links.filter(match => match?.name != link);
-            // console.log(excludedLinks)
-            const valid = {
-                ...social,
-                url
-            }
-            const updated = [...excludedLinks, valid];
-            // console.log(updated, "this is valid")
-            return updated
-            // return {...social, username}
-        }
-        else{
-            return
-        }
-  })
-    // console.log(updatedSocialLinks)
-    const updated = updatedSocialLinks.filter(item => item != undefined);
-    const updatedLinks = [...updated[0]];
-    // console.log(updatedLinks, "watching")
-    setSocialLinks(updatedLinks)
+  const handleSocialLinkUrl = (id,field, value) =>{
+    dispatch(updateSocialLinkUsernameAndUrl({id, field, value}))
+  //   const url = event.target.value;
+  //   const updatedSocialLinks = socialLinks?.map((social, idx , links) => {
+  //       if(social?.name == link) {
+  //           const excludedLinks = links.filter(match => match?.name != link);
+  //           console.log(excludedLinks)
+  //           const valid = {
+  //               ...social,
+  //               url
+  //           }
+  //           const updated = [...excludedLinks, valid];
+  //           console.log(updated, "this is valid")
+  //           return updated
+  //           return {...social, username}
+  //       }
+  //       else{
+  //           return
+  //       }
+  // })
+  //   console.log(updatedSocialLinks)
+  //   const updated = updatedSocialLinks.filter(item => item != undefined);
+  //   const updatedLinks = [...updated[0]];
+  //   console.log(updatedLinks, "watching")
+  //   setSocialLinks(updatedLinks)
+}
+const handleUpdateProfile = (field, value) =>{
+  dispatch(updateProfile({field, value}))
 }
   return (
     <>
@@ -114,8 +123,8 @@ const ResumePersonalInfoForm = () => {
           <input
             type="text"
             name="name"
-            defaultValue={fullName}
-            onChange={(event) => setFullName(event.target.value)}
+            defaultValue={profile?.fullName}
+            onChange={(event) => handleUpdateProfile('fullName', event.target.value)}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100"
           />
         </div>
@@ -131,8 +140,8 @@ const ResumePersonalInfoForm = () => {
           <input
             type="text"
             name="jobTitle"
-            defaultValue={jobTitle}
-            onChange={(event) => setJobTitle(event.target.value)}
+            defaultValue={profile?.jobTitle}
+            onChange={(event) => handleUpdateProfile('jobTitle', event.target.value)}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100"
           />
         </div>
@@ -149,8 +158,8 @@ const ResumePersonalInfoForm = () => {
             <input
               type="text"
               name="email"
-              defaultValue={email}
-              onChange={(event) => setEmail(event.target.value)}
+              defaultValue={profile?.email}
+              onChange={(event) => handleUpdateProfile('email', event.target.value)}
               className="border border-purple-800 rounded-lg p-2 bg-purple-100"
             />
           </div>
@@ -166,8 +175,8 @@ const ResumePersonalInfoForm = () => {
             <input
               type="text"
               name="phone"
-              defaultValue={phone}
-              onChange={(event) => setPhone(event.target.value)}
+              defaultValue={profile?.phone}
+              onChange={(event) => handleUpdateProfile('phone', event.target.value)}
               className="border border-purple-800 rounded-lg p-2 bg-purple-100"
             />
           </div>
@@ -184,8 +193,8 @@ const ResumePersonalInfoForm = () => {
           <input
             type="text"
             name="address"
-            defaultValue={address}
-            onChange={(event) => setAddress(event.target.value)}
+            defaultValue={profile?.address}
+            onChange={(event) => handleUpdateProfile('address', event.target.value)}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100"
           />
         </div>
@@ -193,8 +202,8 @@ const ResumePersonalInfoForm = () => {
         <div className="mt-4 flex flex-col space-y-2">
             {
                 activeSocials. length > 0 && (
-                    newSocialLinks?.map((link, idx) => (
-                        <div key={idx} className="flex flex-col space-y-2">
+                    profile?.socialLinks?.map((link) => (
+                        <div key={link?.id} className="flex flex-col space-y-2">
                         <div className="flex flex-row space-x-2 justify-between items-center">
                           <div className="space-x-1">
                           <label className="font-semibold text-purple-800 capitalize">
@@ -211,14 +220,14 @@ const ResumePersonalInfoForm = () => {
                           name={link?.name}
                           defaultValue={link?.username}
                           placeholder="Enter username"
-                          onChange={(event) => handleSocialLinkUsername(event, link?.name)}
+                          onChange={(event) => handleSocialLinkUsername(link?.id,'username', event.target.value)}
                           className="border border-purple-800 rounded-lg p-2 bg-purple-100"
                         />
                         <input
                           type="text"
                           name={link?.name}
                           defaultValue={link?.url}
-                          onChange={(event) => handleSocialLinkUrl(event, link?.name)}
+                          onChange={(event) => handleSocialLinkUrl(link?.id, 'url', event.target.value)}
                           placeholder="Enter Url"
                           className="border border-purple-800 rounded-lg p-2 bg-purple-100"
                         />
