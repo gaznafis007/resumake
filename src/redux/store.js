@@ -10,6 +10,7 @@ import interestReducer from './features/interestSlice.js'
 import projectReducer from './features/projectSlice.js'
 import courseReducer from './features/courseSlice.js'
 import awardReducer from './features/awardSlice.js'
+import organizationReducer from './features/organizationSlice.js'
 
 
 export const store = configureStore({
@@ -19,6 +20,7 @@ export const store = configureStore({
         skills: skillReducer,
         projects: projectReducer,
         educations: educationReducer,
+        organizations: organizationReducer,
         courses: courseReducer,
         awards: awardReducer,
         languages: languageReducer,
