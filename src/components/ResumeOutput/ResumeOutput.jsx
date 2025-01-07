@@ -21,7 +21,7 @@ const ResumeOutput = () => {
   } = useContext(ResumeInfoContext);
   // console.log(socialLinks)
   // console.log(profileSection);
-  const {experiences, educations} = useSelector((state) =>state)
+  const {profile, experiences, educations} = useSelector((state) =>state)
   console.log(experiences)
   return (
     <div className="p-8">
@@ -97,12 +97,12 @@ const ResumeOutput = () => {
         )}
       </div>
       {/* profile */}
-      {profileSection && (
+      {profile?.description && (
         <div className="mt-2 space-y-1">
           <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
             Profile
           </h3>
-          <p className="mt-1 text-slate-800 text-justify">{profileSection?.description}</p>
+          <p className="mt-1 text-slate-800 text-justify">{profile?.description}</p>
         </div>
       )}
       {experiences[0] && (
