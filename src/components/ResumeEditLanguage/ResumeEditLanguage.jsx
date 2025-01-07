@@ -53,7 +53,7 @@ const ResumeEditLanguage = () => {
       <DefaultButton handler={handleAddLanguage} optionalStyle={'mt-2'}>
         <div className="flex flex-row justify-center items-center space-x-2">
           <FaPlus />
-          <p>Add Experiences</p>
+          <p>Add Languages</p>
         </div>
       </DefaultButton>
     </div>

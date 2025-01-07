@@ -5,6 +5,7 @@ import educationReducer from './features/educationSlice.js'
 import profileReducer from './features/profileSlice.js'
 import skillReducer from './features/skillSlice.js'
 import languageReducer from './features/languageSlice.js'
+import certificateReducer from './features/certificateSlice.js'
 
 
 export const store = configureStore({
@@ -13,6 +14,7 @@ export const store = configureStore({
         experiences: experiencesReducer,
         skills: skillReducer,
         educations: educationReducer,
-        languages: languageReducer
+        languages: languageReducer,
+        certificates: certificateReducer,
     }
 })

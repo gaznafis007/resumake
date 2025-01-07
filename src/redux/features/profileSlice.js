@@ -29,7 +29,7 @@ const profileSlice = createSlice({
             const socialLink = state.socialLinks?.find((link) => link?.id == id);
             if(socialLink){
                 socialLink[field] = value
-                console.log(socialLink)
+                // console.log(socialLink)
             }
         },
         removeSocialLink: (state, {payload}) =>{
