@@ -4,6 +4,8 @@ import { MdEmail, MdCall } from "react-icons/md";
 import { FaLocationDot, FaLink } from "react-icons/fa6";
 import { FaGithub, FaDribbble, FaLinkedinIn, FaBehance } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
+import { useSelector } from "react-redux";
+import Experience from "../Outputs/Experience";
 
 const ResumeOutput = () => {
   const {
@@ -17,7 +19,9 @@ const ResumeOutput = () => {
     educationSection
   } = useContext(ResumeInfoContext);
   // console.log(socialLinks)
-  console.log(profileSection);
+  // console.log(profileSection);
+  const {experiences} = useSelector((state) =>state)
+  console.log(experiences)
   return (
     <div className="p-8">
       {/* Personal Info */}
@@ -98,6 +102,16 @@ const ResumeOutput = () => {
             Profile
           </h3>
           <p className="mt-1 text-slate-800 text-justify">{profileSection?.description}</p>
+        </div>
+      )}
+      {experiences[0]?.id && (
+        <div className="mt-2 flex flex-col space-y-2">
+          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+            Experience
+          </h3>
+          {
+            experiences?.map((experience) => <Experience key={experience?.id} experience={experience}/>)
+          }
         </div>
       )}
       {educationSection && (

@@ -14,7 +14,8 @@ const experienceSlice = createSlice({
             city: '',
             country: '',
             startDate: '',
-            endDate: ''
+            endDate: '',
+            description: ''
             }
             state.push(newExperiences)
         },
