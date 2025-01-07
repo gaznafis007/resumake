@@ -7,6 +7,7 @@ import { SiLeetcode } from "react-icons/si";
 import { useSelector } from "react-redux";
 import Experience from "../Outputs/Experience";
 import Education from "../Outputs/Education";
+import Skills from "../Outputs/Skills";
 
 const ResumeOutput = () => {
   const {} = useContext(ResumeInfoContext);
@@ -110,11 +111,12 @@ const ResumeOutput = () => {
           ))}
         </div>
       )}
-      {skills.expertise[0] && (
+      {skills.expertise && (
         <div className="mt-2 flex flex-col space-y-2">
           <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
             Skills
           </h3>
+          <Skills skills={skills}/>
           {/* {
             experiences?.map((experience) => <Experience key={experience?.id} experience={experience}/>)
           } */}
