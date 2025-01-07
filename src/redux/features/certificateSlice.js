@@ -3,7 +3,7 @@ const { createSlice } = require("@reduxjs/toolkit")
 const initialState = [];
 
 const certificateSlice = createSlice({
-    name: 'certificate',
+    name: 'certificates',
     initialState,
     reducers:{
         addCertificate: (state) =>{
