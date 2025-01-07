@@ -1,5 +1,7 @@
 "use client"
 import React, { createContext, useState } from 'react';
+import { Provider } from "react-redux";
+import { store } from "@/redux/store";
 
 export const ResumeInfoContext = createContext()
 
@@ -82,7 +84,9 @@ const ResumeInfoProvider = ({
     }
     return (
         <ResumeInfoContext.Provider value={value}>
+            <Provider store={store}>
             {children}
+            </Provider>
         </ResumeInfoContext.Provider>
     );
 };

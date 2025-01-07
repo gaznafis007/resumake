@@ -1,9 +1,12 @@
+"use client";
 import { ResumeInfoContext } from '@/contexts/ResumeInfoProvider';
 import React, { useContext } from 'react';
 import SaveAndDeleteSection from '../SaveAndDeleteSection/SaveAndDeleteSection';
+import { useDispatch } from 'react-redux';
 
 const ResumeEditExperience = () => {
     const {experience, setExperience, setSectionCollapse} = useContext(ResumeInfoContext)
+    const dispatch = useDispatch()
     const handleExperienceSection = () =>{
         setSectionCollapse('')
     }
