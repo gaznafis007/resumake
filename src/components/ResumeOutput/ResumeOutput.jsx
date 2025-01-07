@@ -8,12 +8,13 @@ import { useSelector } from "react-redux";
 import Experience from "../Outputs/Experience";
 import Education from "../Outputs/Education";
 import Skills from "../Outputs/Skills";
+import Language from "../Outputs/Language";
 
 const ResumeOutput = () => {
   const {} = useContext(ResumeInfoContext);
   // console.log(socialLinks)
   // console.log(profileSection);
-  const { profile, experiences, skills, educations } = useSelector(
+  const { profile, experiences, skills, educations, languages } = useSelector(
     (state) => state
   );
   // console.log(experiences)
@@ -116,7 +117,7 @@ const ResumeOutput = () => {
           <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
             Skills
           </h3>
-          <Skills skills={skills}/>
+          <Skills skills={skills} />
           {/* {
             experiences?.map((experience) => <Experience key={experience?.id} experience={experience}/>)
           } */}
@@ -130,6 +131,18 @@ const ResumeOutput = () => {
           {educations?.map((education) => (
             <Education key={education?.id} education={education} />
           ))}
+        </div>
+      )}
+      {languages[0] && (
+        <div className="mt-2 flex flex-col space-y-2">
+          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+            Language
+          </h3>
+          <ul className="list-disc text-zinc-800 pl-4">
+          {languages?.map((language) => (
+            <li  key={language?.id}><Language language={language} /></li>
+          ))}
+          </ul>
         </div>
       )}
     </div>
