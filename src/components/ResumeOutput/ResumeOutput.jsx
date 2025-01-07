@@ -6,6 +6,7 @@ import { FaGithub, FaDribbble, FaLinkedinIn, FaBehance } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 import { useSelector } from "react-redux";
 import Experience from "../Outputs/Experience";
+import Education from "../Outputs/Education";
 
 const ResumeOutput = () => {
   const {
@@ -20,7 +21,7 @@ const ResumeOutput = () => {
   } = useContext(ResumeInfoContext);
   // console.log(socialLinks)
   // console.log(profileSection);
-  const {experiences} = useSelector((state) =>state)
+  const {experiences, educations} = useSelector((state) =>state)
   console.log(experiences)
   return (
     <div className="p-8">
@@ -104,7 +105,7 @@ const ResumeOutput = () => {
           <p className="mt-1 text-slate-800 text-justify">{profileSection?.description}</p>
         </div>
       )}
-      {experiences[0]?.id && (
+      {experiences[0] && (
         <div className="mt-2 flex flex-col space-y-2">
           <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
             Experience
@@ -114,32 +115,14 @@ const ResumeOutput = () => {
           }
         </div>
       )}
-      {educationSection && (
+      {educations[0] && (
         <div className="mt-2 space-y-1">
           <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
             Education
           </h3>
-          <div className="flex flex-row justify-between">
-            <p className="text-zinc-800 text-sm">
-              <span className="font-bold">{educationSection?.degree}</span>{educationSection?.school && <span className="font-thin"><i>, {educationSection?.school}</i></span>}
-            </p>
-            <div className="flex flex-col space-y-1 text-zinc-800 items-end">
-              {
-                (educationSection?.startDate || educationSection?.endDate) && (
-                  <p className="text-sm">
-                    {educationSection?.startDate} - {educationSection?.endDate}
-                  </p>
-                )
-              }
-              {
-                (educationSection?.city || educationSection?.country) && (
-                  <p className="text-sm">
-                    <span>{educationSection?.city}</span>{educationSection?.country && <span className="font-thin">, {educationSection?.country}</span>}
-                  </p>
-                )
-              }
-            </div>
-          </div>
+          {
+            educations?.map((education) => <Education key={education?.id} education={education}/>)
+          }
         </div>
       )}
     </div>

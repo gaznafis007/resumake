@@ -1,36 +1,42 @@
 import { ResumeInfoContext } from "@/contexts/ResumeInfoProvider";
 import React, { useContext } from "react";
-import { FaTrash } from "react-icons/fa";
-import Button from "../Button/Button";
+import { FaPlus} from "react-icons/fa";
 import DefaultButton from "../DefaultButton/DefaultButton";
 import SaveAndDeleteSection from "../SaveAndDeleteSection/SaveAndDeleteSection";
+import { useDispatch, useSelector } from "react-redux";
+import { addEducation, removeEducation, updateEducation } from "@/redux/features/educationSlice";
 
 const ResumeEditEducation = () => {
-    const {educationSection, setEducationSection, setSectionCollapse} = useContext(ResumeInfoContext)
-    let educationDetails ={...educationSection}
+    const {setSectionCollapse} = useContext(ResumeInfoContext)
+    const educations = useSelector((state) => state.educations)
+    const dispatch = useDispatch()
     const handleEducationSection = () =>{
         setSectionCollapse('')
     }
-    const removeEducationSection = () =>{
+    const removeEducationSection = (id) =>{
 
-        setEducationSection(null)
+        dispatch(removeEducation(id))
+    }
+    const handleAddEducation = () =>{
+      dispatch(addEducation())
+    }
+    const handleUpdateEducation = (id, field, value) =>{
+      dispatch(updateEducation({id, field, value}))
     }
   return (
     <div className="mt-4">
       <div className="flex flex-col space-y-2">
         <h2 className="text-2xl font-semibold text-purple-800 capitalize">enter your latest education</h2>
-        <div className="flex flex-col space-y-2">
+        {
+          educations && educations?.map(education => (
+            <>
+              <div className="flex flex-col space-y-2">
           <label className="text-purple-800 font-semibold">Degree</label>
           <input
             type="text"
             name="degree"
-            defaultValue={educationSection?.degree}
-            onChange={(event) => {
-                const degreeName = event.target.value;
-                educationDetails.degree = degreeName;
-                console.log(educationDetails);
-                setEducationSection(educationDetails);
-            }}
+            defaultValue={education?.degree}
+            onChange={(event) => handleUpdateEducation(education?.id, 'degree', event.target.value)}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
             placeholder="Enter your degree"
           />
@@ -40,13 +46,8 @@ const ResumeEditEducation = () => {
           <input
             type="text"
             name="school"
-            defaultValue={educationSection?.school}
-            onChange={(event) => {
-                const degreeName = event.target.value;
-                educationDetails.school = degreeName;
-                console.log(educationDetails);
-                setEducationSection(educationDetails);
-            }}
+            defaultValue={education?.school}
+            onChange={(event) => handleUpdateEducation(education?.id, 'school', event.target.value)}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
             placeholder="Enter school name"
           />
@@ -58,13 +59,8 @@ const ResumeEditEducation = () => {
           <input
             type="text"
             name="city"
-            defaultValue={educationSection?.city}
-            onChange={(event) => {
-                const degreeName = event.target.value;
-                educationDetails.city = degreeName;
-                console.log(educationDetails);
-                setEducationSection(educationDetails);
-            }}
+            defaultValue={education?.city}
+            onChange={(event) => handleUpdateEducation(education?.id, 'city', event.target.value)}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
             placeholder="Enter your city"
           />
@@ -75,13 +71,8 @@ const ResumeEditEducation = () => {
           <input
             type="text"
             name="country"
-            defaultValue={educationSection?.country}
-            onChange={(event) => {
-                const degreeName = event.target.value;
-                educationDetails.country = degreeName;
-                console.log(educationDetails);
-                setEducationSection(educationDetails);
-            }}
+            defaultValue={education?.country}
+            onChange={(event) => handleUpdateEducation(education?.id, 'country', event.target.value)}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
             placeholder="Enter your country"
           />
@@ -94,13 +85,8 @@ const ResumeEditEducation = () => {
           <input
             type="date"
             name="startDate"
-            defaultValue={educationSection?.startDate}
-            onChange={(event) => {
-                const degreeName = event.target.value;
-                educationDetails.startDate = degreeName;
-                console.log(educationDetails);
-                setEducationSection(educationDetails);
-            }}
+            defaultValue={education?.startDate}
+            onChange={(event) => handleUpdateEducation(education?.id, 'startDate', event.target.value)}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
             
           />
@@ -111,20 +97,24 @@ const ResumeEditEducation = () => {
           <input
             type="date"
             name="endDate"
-            defaultValue={educationSection?.endDate}
-            onChange={(event) => {
-                const degreeName = event.target.value;
-                educationDetails.endDate = degreeName;
-                console.log(educationDetails);
-                setEducationSection(educationDetails);
-            }}
+            defaultValue={education?.endDate}
+            onChange={(event) => handleUpdateEducation(education?.id, 'endDate', event.target.value)}
             className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
             
           />
         </div>
         </div>
+        <SaveAndDeleteSection handleSave={handleEducationSection} handleRemove={removeEducationSection} removeParams={education?.id} />
+            </>
+          ))
+        }
+        <DefaultButton handler={handleAddEducation}>
+        <div className="flex flex-row justify-center items-center space-x-2">
+          <FaPlus />
+          <p>Add Experiences</p>
+        </div>
+      </DefaultButton>
       </div>
-      <SaveAndDeleteSection handleSave={handleEducationSection} handleRemove={removeEducationSection} />
     </div>
   );
 };
