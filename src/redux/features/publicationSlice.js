@@ -23,7 +23,7 @@ const publicationSlice = createSlice({
         }
     },
     removePublication: (state, {payload}) =>{
-        return state?.filter(item => item?.id != id)
+        return state?.filter(item => item?.id != payload)
     }
   }
 });

@@ -15,12 +15,13 @@ import Project from "../Outputs/Project";
 import Course from "../Outputs/Course";
 import Award from "../Outputs/Award";
 import Organization from "../Outputs/Organization";
+import Publication from "../Outputs/Publication";
 
 const ResumeOutput = () => {
   const {} = useContext(ResumeInfoContext);
   // console.log(socialLinks)
   // console.log(profileSection);
-  const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses, awards, organizations } = useSelector(
+  const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses, awards, organizations, publications } = useSelector(
     (state) => state
   );
   // console.log(experiences)
@@ -146,6 +147,16 @@ const ResumeOutput = () => {
           </h3>
           {educations?.map((education) => (
             <Education key={education?.id} education={education} />
+          ))}
+        </div>
+      )}
+      {publications[0] && (
+        <div className="mt-2 space-y-1">
+          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+            Publications
+          </h3>
+          {publications?.map((publication) => (
+            <Publication key={publication?.id} publication={publication} />
           ))}
         </div>
       )}
