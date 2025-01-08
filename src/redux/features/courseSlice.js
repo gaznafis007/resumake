@@ -26,7 +26,7 @@ const courseSlice = createSlice({
         }
     },
     removeCourse: (state, {payload}) =>{
-        return state?.filter(item => item?.id != id)
+        return state?.filter(item => item?.id != payload)
     }
   }
 });

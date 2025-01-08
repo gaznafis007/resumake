@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Project = ({project}) => {
-    console.log(project?.description)
+    // console.log(project?.description)
     return (
         <div className="flex flex-row justify-between">
             <div className="flex flex-col space-y-1 items-start">
