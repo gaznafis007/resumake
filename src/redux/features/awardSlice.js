@@ -10,8 +10,10 @@ const awardSlice = createSlice({
                 id: Date.now(),
                 title: '',
                 issuer: '',
+                date: '',
                 description: ''
             }
+            state.push(newAward)
         },
         updateAward: (state, {payload}) =>{
             const {id, field, value} = payload;

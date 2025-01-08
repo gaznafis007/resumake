@@ -13,12 +13,13 @@ import Certificate from "../Outputs/Certificate";
 import Interest from "../Outputs/Interest";
 import Project from "../Outputs/Project";
 import Course from "../Outputs/Course";
+import Award from "../Outputs/Award";
 
 const ResumeOutput = () => {
   const {} = useContext(ResumeInfoContext);
   // console.log(socialLinks)
   // console.log(profileSection);
-  const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses } = useSelector(
+  const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses, awards } = useSelector(
     (state) => state
   );
   // console.log(experiences)
@@ -164,6 +165,16 @@ const ResumeOutput = () => {
           </h3>
           {courses?.map((course) => (
             <Course key={course?.id} course={course} />
+          ))}
+        </div>
+      )}
+      {awards[0] && (
+        <div className="mt-2 flex flex-col space-y-2">
+          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+            Awards
+          </h3>
+          {awards?.map((award) => (
+            <Award key={award?.id} award={award} />
           ))}
         </div>
       )}
