@@ -26,7 +26,7 @@ const organizationSlice = createSlice({
         }
     },
     removeOrganization: (state, {payload}) =>{
-        return state?.filter(item => item?.id != id)
+        return state?.filter(item => item?.id != payload)
     }
   }
 });
