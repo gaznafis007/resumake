@@ -11,6 +11,7 @@ const interestSlice = createSlice({
                 name: '',
                 description: ''
             }
+            state.push(newInterest)
         },
         updateInterest: (state, {payload}) =>{
             const {id, field, value} = payload;

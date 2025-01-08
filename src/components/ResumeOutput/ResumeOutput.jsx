@@ -10,12 +10,13 @@ import Education from "../Outputs/Education";
 import Skills from "../Outputs/Skills";
 import Language from "../Outputs/Language";
 import Certificate from "../Outputs/Certificate";
+import Interest from "../Outputs/Interest";
 
 const ResumeOutput = () => {
   const {} = useContext(ResumeInfoContext);
   // console.log(socialLinks)
   // console.log(profileSection);
-  const { profile, experiences, skills, educations, languages, certificates } = useSelector(
+  const { profile, experiences, skills, educations, languages, certificates, interests } = useSelector(
     (state) => state
   );
   // console.log(experiences)
@@ -152,6 +153,18 @@ const ResumeOutput = () => {
           <ul className="list-disc text-zinc-800 pl-4">
           {languages?.map((language) => (
             <li  key={language?.id}><Language language={language} /></li>
+          ))}
+          </ul>
+        </div>
+      )}
+      {interests[0] && (
+        <div className="mt-2 flex flex-col space-y-2">
+          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+            Interests
+          </h3>
+          <ul className="list-disc text-zinc-800 pl-4">
+          {interests?.map((interest) => (
+            <li  key={interest?.id}><Interest interest={interest} /></li>
           ))}
           </ul>
         </div>
