@@ -25,7 +25,7 @@ const ResumeEditInterest = () => {
   return (
     <div className="flex flex-col space-y-2 mt-4">
       <h2 className="text-2xl font-semibold text-purple-800">
-        Edit Experience
+        Edit Your Interest
       </h2>
       {
         interests[0] && interests?.map(interest =>(

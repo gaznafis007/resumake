@@ -11,12 +11,13 @@ import Skills from "../Outputs/Skills";
 import Language from "../Outputs/Language";
 import Certificate from "../Outputs/Certificate";
 import Interest from "../Outputs/Interest";
+import Project from "../Outputs/Project";
 
 const ResumeOutput = () => {
   const {} = useContext(ResumeInfoContext);
   // console.log(socialLinks)
   // console.log(profileSection);
-  const { profile, experiences, skills, educations, languages, certificates, interests } = useSelector(
+  const { profile, experiences, skills, educations, languages, certificates, interests, projects } = useSelector(
     (state) => state
   );
   // console.log(experiences)
@@ -123,6 +124,16 @@ const ResumeOutput = () => {
           {/* {
             experiences?.map((experience) => <Experience key={experience?.id} experience={experience}/>)
           } */}
+        </div>
+      )}
+      {projects[0] && (
+        <div className="mt-2 space-y-1">
+          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+            Projects
+          </h3>
+          {projects?.map((project) => (
+            <Project key={project?.id} project={project} />
+          ))}
         </div>
       )}
       {educations[0] && (
