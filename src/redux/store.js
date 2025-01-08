@@ -12,6 +12,9 @@ import courseReducer from './features/courseSlice.js'
 import awardReducer from './features/awardSlice.js'
 import organizationReducer from './features/organizationSlice.js'
 import publicationReducer from './features/publicationSlice.js'
+import referenceReducer from './features/referenceSlice.js'
+import declarationReducer from './features/declarationSlice.js'
+import customReducer from './features/customSlice.js'
 
 
 export const store = configureStore({
@@ -27,6 +30,9 @@ export const store = configureStore({
         awards: awardReducer,
         languages: languageReducer,
         certificates: certificateReducer,
-        interests: interestReducer
+        interests: interestReducer,
+        references: referenceReducer,
+        declaration: declarationReducer,
+        custom: customReducer
     }
 })
