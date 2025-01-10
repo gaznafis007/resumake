@@ -16,12 +16,14 @@ import Course from "../Outputs/Course";
 import Award from "../Outputs/Award";
 import Organization from "../Outputs/Organization";
 import Publication from "../Outputs/Publication";
+import Declaration from "../Outputs/Declaration";
+
 
 const ResumeOutput = () => {
   const {} = useContext(ResumeInfoContext);
   // console.log(socialLinks)
   // console.log(profileSection);
-  const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses, awards, organizations, publications } = useSelector(
+  const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses, awards, organizations, publications, declaration } = useSelector(
     (state) => state
   );
   // console.log(experiences)
@@ -224,6 +226,16 @@ const ResumeOutput = () => {
           </ul>
         </div>
       )}
+      {
+        (declaration.description || declaration.name || declaration.address || declaration.date || declaration.image) && (
+          <div className="mt-2 flex flex-col space-y-2">
+          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+            Declaration
+          </h3>
+            <Declaration  declaration={declaration} />
+        </div>
+        )
+      }
     </div>
   );
 };
