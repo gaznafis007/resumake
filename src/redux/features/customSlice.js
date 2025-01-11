@@ -20,6 +20,7 @@ const customSlice = createSlice({
                 country: '',
                 startDate: '',
                 endDate: '',
+                description: ''
             }
             state.sections.push(newSection)
         },
@@ -31,7 +32,7 @@ const customSlice = createSlice({
             }
         },
         removeSection: (state, {payload}) =>{
-            return state?.sections?.filter(item => item?.id != payload)
+            state.sections =state?.sections?.filter(item => item?.id != payload)
         }
     }
 })

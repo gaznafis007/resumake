@@ -53,7 +53,7 @@ const ResumeEditExperience = () => {
                     )
                   }
                   className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
-                  placeholder="Enter your degree"
+                  placeholder="Enter job title"
                 />
               </div>
               <div className="flex flex-col space-y-2">
@@ -70,7 +70,7 @@ const ResumeEditExperience = () => {
                     )
                   }
                   className="border border-purple-800 rounded-lg p-2 bg-purple-100 text-purple-800"
-                  placeholder="Enter school name"
+                  placeholder="Enter company name"
                 />
               </div>
               <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">

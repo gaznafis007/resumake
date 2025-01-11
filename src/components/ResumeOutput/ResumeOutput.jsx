@@ -18,13 +18,14 @@ import Organization from "../Outputs/Organization";
 import Publication from "../Outputs/Publication";
 import Declaration from "../Outputs/Declaration";
 import Reference from "../Outputs/Reference";
+import Custom from "../Outputs/Custom";
 
 
 const ResumeOutput = () => {
   const {} = useContext(ResumeInfoContext);
   // console.log(socialLinks)
   // console.log(profileSection);
-  const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses, awards, organizations, publications, references,declaration } = useSelector(
+  const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses, awards, organizations, publications, references,declaration, custom } = useSelector(
     (state) => state
   );
   // console.log(experiences)
@@ -235,6 +236,18 @@ const ResumeOutput = () => {
           {references?.map((reference) => (
             <Reference key={reference?.id} reference={reference} />
           ))}
+        </div>
+      )}
+      {custom?.name && (
+        <div className="mt-2 flex flex-col space-y-2">
+          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+            {custom?.name}
+          </h3>
+          {custom?.sections[0] && (
+            custom?.sections?.map((custom) => (
+              <Custom key={custom?.id} custom={custom} />
+            ))
+          )}
         </div>
       )}
       {
