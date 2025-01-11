@@ -10,7 +10,7 @@ const referenceSlice = createSlice({
                 id: Date.now(),
                 name: '',
                 position: '',
-                org: '',
+                company: '',
                 email: '',
                 phone: ''
             }
