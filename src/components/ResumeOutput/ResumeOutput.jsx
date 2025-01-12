@@ -51,7 +51,16 @@ const ResumeOutput = () => {
       pdf.save(`${profile?.fullName ? profile?.fullName : 'Resume'}.pdf`)
     })
   }
-
+  // const generatePdf = () =>{
+  //   if(resumeRef.current){
+  //     const newPdf = new jsPDF();
+  //     newPdf.html(resumeRef.current, {
+  //       callback: (doc) =>{
+  //         doc.save(`${profile?.fullName ? profile?.fullName : 'Resume'}.pdf`)
+  //       }
+  //     })
+  //   }
+  //   }
   useEffect(() =>{
     if(pdf.triggerDownload){
       generatePdf()

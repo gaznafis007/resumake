@@ -67,7 +67,7 @@ const { profile, experiences, skills, educations, languages, certificates, inter
 );
 const dispatch = useDispatch()
 const generatePdf = () =>{
-  console.log('hello')
+  // console.log('hello')
   if(docRef.current){
     const newPdf = new jsPDF()
     newPdf.html(docRef.current, {
