@@ -9,7 +9,7 @@ const Declaration = ({ declaration }) => {
       </h3>
       <div className="flex flex-col space-y-2 justify-end">
         {
-            declaration?.image && <Image alt="signature" className="place-self-end" src={declaration?.img} width={100} height={100}/>
+            declaration?.image && <Image alt="signature" className="place-self-end" src={declaration?.image} width={100} height={100}/>
         }
         <div className="border-t border-t-zinc-800 pt-2 text-right w-1/3 place-self-end">
         <p className="text-zinc-800 text-sm">

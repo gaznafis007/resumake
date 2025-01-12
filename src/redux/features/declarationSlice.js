@@ -23,7 +23,7 @@ const declarationSlice = createSlice({
         address: "",
         date: "",
       };
-      state = newDeclaration
+      return state = newDeclaration
     },
   },
 });
