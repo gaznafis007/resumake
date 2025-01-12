@@ -4,15 +4,21 @@ import { FaEdit } from 'react-icons/fa';
 import DefaultButton from '../DefaultButton/DefaultButton';
 import { MdDone } from "react-icons/md";
 import { RiFileDownloadFill } from "react-icons/ri";
+import { useDispatch } from 'react-redux';
+import { downloadPdf } from '@/redux/features/pdfSlice';
 
 const ResumeTitle = () => {
     const [edit, setEdit] = useState(false)
     const [title, setTitle] = useState('Resume No. 1')
+    const dispatch = useDispatch()
     const handleEditTitle = (event) =>{
         event.preventDefault();
         const newTitle = event.target.title.value;
         setTitle(newTitle);
         setEdit(false);
+    }
+    const handleDownloadResume = () =>{
+        dispatch(downloadPdf({status: true}))
     }
     return (
         <section className='w-full bg-white p-4 rounded-lg flex flex-row justify-between'>
@@ -31,7 +37,7 @@ const ResumeTitle = () => {
                 !edit && <FaEdit onClick={() => setEdit(true)} className='text-slate-400 cursor-pointer'/>
             }
             </div>
-            <DefaultButton>
+            <DefaultButton handler={handleDownloadResume}>
                 <div className="flex flex-row space-x-2 items-center">
                     <RiFileDownloadFill/>
                     <h2>Download</h2>

@@ -1,10 +1,10 @@
 import { ResumeInfoContext } from "@/contexts/ResumeInfoProvider";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { MdEmail, MdCall } from "react-icons/md";
 import { FaLocationDot, FaLink } from "react-icons/fa6";
 import { FaGithub, FaDribbble, FaLinkedinIn, FaBehance } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Experience from "../Outputs/Experience";
 import Education from "../Outputs/Education";
 import Skills from "../Outputs/Skills";
@@ -19,18 +19,49 @@ import Publication from "../Outputs/Publication";
 import Declaration from "../Outputs/Declaration";
 import Reference from "../Outputs/Reference";
 import Custom from "../Outputs/Custom";
+import jsPDF from "jspdf";
+import { downloadPdf } from "@/redux/features/pdfSlice";
+import html2canvas from "html2canvas";
 
 
 const ResumeOutput = () => {
   const {} = useContext(ResumeInfoContext);
+  const resumeRef = useRef()
+  const dispatch = useDispatch()
   // console.log(socialLinks)
   // console.log(profileSection);
-  const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses, awards, organizations, publications, references,declaration, custom } = useSelector(
+  const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses, awards, organizations, publications, references,declaration, custom, pdf } = useSelector(
     (state) => state
   );
+  const generatePdf = () =>{
+    const input = resumeRef.current;
+
+    html2canvas(input, {
+      scale: 3, // Higher scale for better resolution
+      useCORS: true, // Enables cross-origin resource sharing for images
+      allowTaint: true,
+    })
+    .then((canvas) =>{
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save(`${profile?.fullName ? profile?.fullName : 'Resume'}.pdf`)
+    })
+  }
+
+  useEffect(() =>{
+    if(pdf.triggerDownload){
+      generatePdf()
+      dispatch(downloadPdf({status:false}))
+    }
+  }, [pdf.triggerDownload])
+
   // console.log(experiences)
   return (
-    <div className="p-8">
+    <div ref={resumeRef} className="p-8">
       {/* Personal Info */}
       <div>
         <h2
@@ -73,7 +104,7 @@ const ResumeOutput = () => {
               {profile?.socialLinks?.map((link) => (
                 <div
                   key={link?.id}
-                  className="flex flex-row  items-center space-x-2"
+                  className="flex flex-row  items-center space-x-2 text-zinc-800"
                 >
                   {link?.name == "Website" && (
                     <FaLink className="text-zinc-800" />

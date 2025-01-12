@@ -15,6 +15,7 @@ import publicationReducer from './features/publicationSlice.js'
 import referenceReducer from './features/referenceSlice.js'
 import declarationReducer from './features/declarationSlice.js'
 import customReducer from './features/customSlice.js'
+import pdfReducer from './features/pdfSlice.js'
 
 
 export const store = configureStore({
@@ -33,6 +34,7 @@ export const store = configureStore({
         interests: interestReducer,
         references: referenceReducer,
         declaration: declarationReducer,
-        custom: customReducer
+        custom: customReducer,
+        pdf: pdfReducer
     }
 })

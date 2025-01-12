@@ -44,6 +44,7 @@ import ResumeEditPublication from "@/components/ResumeEditPublication/ResumeEdit
 import ResumeEditReference from "@/components/ResumeEditRefernece/ResumeEditReference";
 import ResumeEditDeclaration from "@/components/ResumeEditDeclaration/ResumeEditDeclaration";
 import ResumeEditCustomSection from "@/components/ResumeEditCustomSection/ResumeEditCustomSection";
+import ResumeOutputPDF from "@/components/ResumeOutput/ResumeOutputPDF";
 
 const contentSections = [
   {
@@ -204,6 +205,7 @@ const Create = () => {
         {/* Resume's output */}
         <section onClick={() =>setActiveSection('view')} className={`hidden md:block md:w-1/2 rounded-md bg-white shadow-xl cursor-zoom-in`}>
         <ResumeOutput />
+        {/* <ResumeOutputPDF/> */}
         </section>
       </section>
       {
