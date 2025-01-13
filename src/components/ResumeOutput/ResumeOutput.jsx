@@ -33,42 +33,42 @@ const ResumeOutput = () => {
   const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses, awards, organizations, publications, references,declaration, custom, pdf } = useSelector(
     (state) => state
   );
-  // const generatePdf = () =>{
-  //   const input = resumeRef.current;
-
-  //   html2canvas(input, {
-  //     scale: 3, // Higher scale for better resolution
-  //     useCORS: true, // Enables cross-origin resource sharing for images
-  //     allowTaint: true,
-  //   })
-  //   .then((canvas) =>{
-  //     const imgData = canvas.toDataURL('image/png');
-  //     const pdf = new jsPDF('p', 'mm', 'a4');
-  //     const pdfWidth = pdf.internal.pageSize.getWidth();
-  //     const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-
-  //     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-  //     pdf.save(`${profile?.fullName ? profile?.fullName : 'Resume'}.pdf`)
-  //   })
-  // }
   const generatePdf = () =>{
-    if(resumeRef.current){
-      const newPdf = new jsPDF();
-      newPdf.html(resumeRef.current, {
-        callback: (doc) =>{
-          doc.save(`${profile?.fullName ? profile?.fullName : 'Resume'}.pdf`)
-        },
-        x: 0,
-        y: 0,
-        // autoPaging: 'text',
-        // html2canvas: {
-        //   scale: 3
-        // },
-        width: 190,
-        windowWidth: resumeRef.current.scrollWidth
-      })
-    }
-    }
+    const input = resumeRef.current;
+
+    html2canvas(input, {
+      scale: 5, // Higher scale for better resolution
+      useCORS: true, // Enables cross-origin resource sharing for images
+      allowTaint: true,
+    })
+    .then((canvas) =>{
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save(`${profile?.fullName ? profile?.fullName : 'Resume'}.pdf`)
+    })
+  }
+  // const generatePdf = () =>{
+  //   if(resumeRef.current){
+  //     const newPdf = new jsPDF();
+  //     newPdf.html(resumeRef.current, {
+  //       callback: (doc) =>{
+  //         doc.save(`${profile?.fullName ? profile?.fullName : 'Resume'}.pdf`)
+  //       },
+  //       x: 0,
+  //       y: 0,
+  //       // autoPaging: 'text',
+  //       // html2canvas: {
+  //       //   scale: 3
+  //       // },
+  //       width: 190,
+  //       windowWidth: resumeRef.current.scrollWidth
+  //     })
+  //   }
+  //   }
   useEffect(() =>{
     if(pdf.triggerDownload){
       generatePdf()
@@ -78,7 +78,7 @@ const ResumeOutput = () => {
 
   // console.log(experiences)
   return (
-    <div ref={resumeRef}>
+    <div ref={resumeRef} className="p-8">
       {/* Personal Info */}
       <div>
         <h2
@@ -153,7 +153,7 @@ const ResumeOutput = () => {
       {/* profile */}
       {profile?.description && (
         <div className="mt-2 space-y-1">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
             Profile
           </h3>
           <p className="mt-1 text-slate-800 text-justify">
@@ -163,7 +163,7 @@ const ResumeOutput = () => {
       )}
       {experiences[0] && (
         <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
             Experience
           </h3>
           {experiences?.map((experience) => (
@@ -173,7 +173,7 @@ const ResumeOutput = () => {
       )}
       {skills.expertise && (
         <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
             Skills
           </h3>
           <Skills skills={skills} />
@@ -184,7 +184,7 @@ const ResumeOutput = () => {
       )}
       {projects[0] && (
         <div className="mt-2 space-y-1">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold text-zinc-800 pb-2 border-b-2 border-b-slate-800">
             Projects
           </h3>
           {projects?.map((project) => (
@@ -194,7 +194,7 @@ const ResumeOutput = () => {
       )}
       {educations[0] && (
         <div className="mt-2 space-y-1">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
             Education
           </h3>
           {educations?.map((education) => (
@@ -204,7 +204,7 @@ const ResumeOutput = () => {
       )}
       {publications[0] && (
         <div className="mt-2 space-y-1">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
             Publications
           </h3>
           {publications?.map((publication) => (
@@ -214,7 +214,7 @@ const ResumeOutput = () => {
       )}
       {organizations[0] && (
         <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
           Organizations
           </h3>
           {organizations?.map((organization) => (
@@ -224,7 +224,7 @@ const ResumeOutput = () => {
       )}
       {certificates[0] && (
         <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
             Certificates
           </h3>
           {certificates?.map((certificate) => (
@@ -234,7 +234,7 @@ const ResumeOutput = () => {
       )}
       {courses[0] && (
         <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
             Courses
           </h3>
           {courses?.map((course) => (
@@ -244,7 +244,7 @@ const ResumeOutput = () => {
       )}
       {awards[0] && (
         <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
             Awards
           </h3>
           {awards?.map((award) => (
@@ -254,7 +254,7 @@ const ResumeOutput = () => {
       )}
       {languages[0] && (
         <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
             Language
           </h3>
           <ul className="list-disc text-zinc-800 pl-4">
@@ -266,10 +266,10 @@ const ResumeOutput = () => {
       )}
       {interests[0] && (
         <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
             Interests
           </h3>
-          <ul className="list-disc text-zinc-800 pl-4">
+          <ul className="list-disc text-zinc-800 pl-2">
           {interests?.map((interest) => (
             <li  key={interest?.id}><Interest interest={interest} /></li>
           ))}
@@ -278,7 +278,7 @@ const ResumeOutput = () => {
       )}
       {references[0] && (
         <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
             References
           </h3>
           {references?.map((reference) => (
@@ -288,7 +288,7 @@ const ResumeOutput = () => {
       )}
       {custom?.name && (
         <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
             {custom?.name}
           </h3>
           {custom?.sections[0] && (
@@ -301,7 +301,7 @@ const ResumeOutput = () => {
       {
         (declaration.description || declaration.name || declaration.address || declaration.date || declaration.image) && (
           <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
             Declaration
           </h3>
             <Declaration  declaration={declaration} />

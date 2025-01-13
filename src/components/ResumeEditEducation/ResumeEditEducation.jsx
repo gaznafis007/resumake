@@ -5,6 +5,7 @@ import DefaultButton from "../DefaultButton/DefaultButton";
 import SaveAndDeleteSection from "../SaveAndDeleteSection/SaveAndDeleteSection";
 import { useDispatch, useSelector } from "react-redux";
 import { addEducation, removeEducation, updateEducation } from "@/redux/features/educationSlice";
+import AddInfoButton from "../AddInfoButton/AddInfoButton";
 
 const ResumeEditEducation = () => {
     const {setSectionCollapse} = useContext(ResumeInfoContext)
@@ -107,12 +108,7 @@ const ResumeEditEducation = () => {
             </>
           ))
         }
-        <DefaultButton handler={handleAddEducation}>
-        <div className="flex flex-row justify-center items-center space-x-2">
-          <FaPlus />
-          <p>Add Experiences</p>
-        </div>
-      </DefaultButton>
+        <AddInfoButton handler={handleAddEducation} title={'Add Education'}></AddInfoButton>
       </div>
     </div>
   );

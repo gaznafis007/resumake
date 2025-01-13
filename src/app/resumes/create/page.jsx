@@ -44,7 +44,7 @@ import ResumeEditPublication from "@/components/ResumeEditPublication/ResumeEdit
 import ResumeEditReference from "@/components/ResumeEditRefernece/ResumeEditReference";
 import ResumeEditDeclaration from "@/components/ResumeEditDeclaration/ResumeEditDeclaration";
 import ResumeEditCustomSection from "@/components/ResumeEditCustomSection/ResumeEditCustomSection";
-import ResumeOutputPDF from "@/components/ResumeOutput/ResumeOutputPDF";
+
 
 const contentSections = [
   {
