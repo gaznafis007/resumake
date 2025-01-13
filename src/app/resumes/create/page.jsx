@@ -203,9 +203,10 @@ const Create = () => {
           </Button>
         </div>
         {/* Resume's output */}
-        <section onClick={() =>setActiveSection('view')} className={`hidden md:block md:w-1/2 rounded-md bg-white shadow-xl cursor-zoom-in`}>
+        <section onClick={() =>setActiveSection('view')} className={`hidden md:block md:w-1/2 p-8 rounded-md bg-white shadow-xl cursor-zoom-in`}>
         <ResumeOutput />
         {/* <ResumeOutputPDF/> */}
+        {/* <PdfOutput/> */}
         </section>
       </section>
       {

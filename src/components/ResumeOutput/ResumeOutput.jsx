@@ -33,34 +33,42 @@ const ResumeOutput = () => {
   const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses, awards, organizations, publications, references,declaration, custom, pdf } = useSelector(
     (state) => state
   );
-  const generatePdf = () =>{
-    const input = resumeRef.current;
-
-    html2canvas(input, {
-      scale: 3, // Higher scale for better resolution
-      useCORS: true, // Enables cross-origin resource sharing for images
-      allowTaint: true,
-    })
-    .then((canvas) =>{
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      pdf.save(`${profile?.fullName ? profile?.fullName : 'Resume'}.pdf`)
-    })
-  }
   // const generatePdf = () =>{
-  //   if(resumeRef.current){
-  //     const newPdf = new jsPDF();
-  //     newPdf.html(resumeRef.current, {
-  //       callback: (doc) =>{
-  //         doc.save(`${profile?.fullName ? profile?.fullName : 'Resume'}.pdf`)
-  //       }
-  //     })
-  //   }
-  //   }
+  //   const input = resumeRef.current;
+
+  //   html2canvas(input, {
+  //     scale: 3, // Higher scale for better resolution
+  //     useCORS: true, // Enables cross-origin resource sharing for images
+  //     allowTaint: true,
+  //   })
+  //   .then((canvas) =>{
+  //     const imgData = canvas.toDataURL('image/png');
+  //     const pdf = new jsPDF('p', 'mm', 'a4');
+  //     const pdfWidth = pdf.internal.pageSize.getWidth();
+  //     const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+  //     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+  //     pdf.save(`${profile?.fullName ? profile?.fullName : 'Resume'}.pdf`)
+  //   })
+  // }
+  const generatePdf = () =>{
+    if(resumeRef.current){
+      const newPdf = new jsPDF();
+      newPdf.html(resumeRef.current, {
+        callback: (doc) =>{
+          doc.save(`${profile?.fullName ? profile?.fullName : 'Resume'}.pdf`)
+        },
+        x: 0,
+        y: 0,
+        // autoPaging: 'text',
+        // html2canvas: {
+        //   scale: 3
+        // },
+        width: 190,
+        windowWidth: resumeRef.current.scrollWidth
+      })
+    }
+    }
   useEffect(() =>{
     if(pdf.triggerDownload){
       generatePdf()
@@ -70,7 +78,7 @@ const ResumeOutput = () => {
 
   // console.log(experiences)
   return (
-    <div ref={resumeRef} className="p-8">
+    <div ref={resumeRef}>
       {/* Personal Info */}
       <div>
         <h2
