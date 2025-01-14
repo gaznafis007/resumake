@@ -16,10 +16,12 @@ import referenceReducer from './features/referenceSlice.js'
 import declarationReducer from './features/declarationSlice.js'
 import customReducer from './features/customSlice.js'
 import pdfReducer from './features/pdfSlice.js'
+import userReducer from './features/userSLice.js'
 
 
 export const store = configureStore({
     reducer:{
+        user: userReducer,
         profile: profileReducer,
         experiences: experiencesReducer,
         skills: skillReducer,
