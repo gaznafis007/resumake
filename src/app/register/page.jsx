@@ -3,12 +3,14 @@ import Button from "@/components/Button/Button";
 import DefaultButton from "@/components/DefaultButton/DefaultButton";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 
 
 const Register = () => {
-    const {register, handleSubmit, formState:{errors}} = useForm()
+    const {register, handleSubmit, formState:{errors}, reset} = useForm();
+    const router = useRouter()
     const handleRegister = (data) =>{
         const userInfo = {
             name:data.name,
@@ -23,9 +25,12 @@ const Register = () => {
             },
             body: JSON.stringify(userInfo)
         })
-        .then(res => console.log(res))
+        .then(res => res.json())
         .then(userRes =>{
-            console.log(userRes)
+            if(userRes?.acknowledged){
+                reset();
+                router.push('/login')
+            }
         })
     }
   return (

@@ -23,11 +23,9 @@ const ResumeInfoProvider = ({
     }
     return (
         <ResumeInfoContext.Provider value={value}>
-            
             <Provider store={store}>
             {children}
             </Provider>
-            
         </ResumeInfoContext.Provider>
     );
 };
