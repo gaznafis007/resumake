@@ -1,10 +1,33 @@
+'use client';
 import Button from "@/components/Button/Button";
 import DefaultButton from "@/components/DefaultButton/DefaultButton";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useForm } from "react-hook-form";
+
 
 const Register = () => {
+    const {register, handleSubmit, formState:{errors}} = useForm()
+    const handleRegister = (data) =>{
+        const userInfo = {
+            name:data.name,
+            email: data.email,
+            password: data.password
+        }
+        console.log(userInfo)
+        fetch('/api/register', {
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(userInfo)
+        })
+        .then(res => console.log(res))
+        .then(userRes =>{
+            console.log(userRes)
+        })
+    }
   return (
     <div className="p-8 md:p-16 flex flex-col space-y-4">
       <Link
@@ -29,7 +52,7 @@ const Register = () => {
           <h2 className="text-3xl font-thin text-purple-800 text-center -mt-8">
             Register
           </h2>
-          <form className="flex flex-col space-y-4 ">
+          <form onSubmit={handleSubmit(handleRegister)} className="flex flex-col space-y-4 ">
             <div className="flex flex-col space-y-2">
               <label className="text-purple-800 text-sm">Name</label>
               <input
@@ -37,7 +60,15 @@ const Register = () => {
                 name="name"
                 className="border border-purple-800 rounded-md px-4 py-2 text-purple-800 bg-purple-200"
                 placeholder="Enter your name"
+                {...register('name', {
+                    required:{
+                        value:true,
+                        message: 'Name is Required'
+                    }
+                })}
               />
+              {errors.name && <p className="text-red-500 bg-red-200 rounded-md p-1">{errors.name.message}</p>
+                            }
             </div>
             <div className="flex flex-col space-y-2">
               <label className="text-purple-800 text-sm">Email</label>
@@ -46,7 +77,15 @@ const Register = () => {
                 name="email"
                 className="border border-purple-800 rounded-md px-4 py-2 text-purple-800 bg-purple-200"
                 placeholder="Enter your email"
+                {...register('email', {
+                    required:{
+                        value:true,
+                        message: 'Email is Required'
+                    }
+                })}
               />
+              {errors.email && <p className="text-red-500 bg-red-200 rounded-md p-1">{errors.email.message}</p>
+                            }
             </div>
             <div className="flex flex-col space-y-2">
               <label className="text-purple-800 text-sm">Password</label>
@@ -55,7 +94,19 @@ const Register = () => {
                 name="password"
                 className="border border-purple-800 rounded-md px-4 py-2 text-purple-800 bg-purple-200"
                 placeholder="Create your password"
+                {...register('password', {
+                    required:{
+                        value: true,
+                        message: 'Password is required'
+                    },
+                    minLength:{
+                        value: 6,
+                        message: 'Password must be 6 characters long'
+                    }
+                })}
               />
+              {errors.password && <p className="text-red-500 bg-red-200 rounded-md p-1">{errors.password.message}</p>
+                            }
             </div>
             <Link
               href={"/register"}
