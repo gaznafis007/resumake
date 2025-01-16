@@ -44,6 +44,7 @@ import ResumeEditPublication from "@/components/ResumeEditPublication/ResumeEdit
 import ResumeEditReference from "@/components/ResumeEditRefernece/ResumeEditReference";
 import ResumeEditDeclaration from "@/components/ResumeEditDeclaration/ResumeEditDeclaration";
 import ResumeEditCustomSection from "@/components/ResumeEditCustomSection/ResumeEditCustomSection";
+import Customize from "@/components/Customize/Customize";
 
 
 const contentSections = [
@@ -157,7 +158,7 @@ const contentSections = [
 
 
 const Create = () => {
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState("content");
   const [open, setOpen] =useState(false);
   const {sections,sectionCollapse, setSections, setSectionCollapse} = useContext(ResumeInfoContext)
 
@@ -169,10 +170,13 @@ const Create = () => {
           activeSection={activeSection}
           setActiveSection={setActiveSection}
         />
-        <div className="flex flex-col w-full md:w-5/12">
+        <section className="flex flex-col w-full md:w-5/12">
           <ResumeTitle />
           {/* Resume form */}
-          <ResumePersonalInfo />
+          {
+            activeSection !== 'customize' && (
+              <>
+                  <ResumePersonalInfo />
           {
             sections && (
               <div className="mt-4 md:mt-8 grid grid-cols-1 gap-4">
@@ -201,7 +205,13 @@ const Create = () => {
               <p>add content</p>
             </div>
           </Button>
-        </div>
+              </>
+            )
+          }
+          {
+            activeSection == 'customize' && <Customize/>
+          }
+        </section>
         {/* Resume's output */}
         <section onClick={() =>setActiveSection('view')} className={`hidden md:block md:w-1/2 rounded-md bg-white shadow-xl cursor-zoom-in`}>
         <ResumeOutput />

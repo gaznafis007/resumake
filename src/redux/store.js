@@ -17,6 +17,7 @@ import declarationReducer from './features/declarationSlice.js'
 import customReducer from './features/customSlice.js'
 import pdfReducer from './features/pdfSlice.js'
 import userReducer from './features/userSLice.js'
+import styleReducer from './features/styleSlice'
 
 
 export const store = configureStore({
@@ -37,6 +38,7 @@ export const store = configureStore({
         references: referenceReducer,
         declaration: declarationReducer,
         custom: customReducer,
-        pdf: pdfReducer
+        pdf: pdfReducer,
+        style: styleReducer
     }
 })
