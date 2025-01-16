@@ -1,12 +1,20 @@
 const { createSlice } = require("@reduxjs/toolkit");
 
-const initialState = {};
+const initialState = {
+    layout: 'top',
+    column: 'single',
+    color: 'zinc-800'
+};
 const styleSlice = createSlice({
     name: 'styles',
     initialState,
-    reducers:{}
+    reducers:{
+        colorSelection: (state, {payload}) =>{
+            state.color=payload
+        }
+    }
 })
 
 
-export const {} = styleSlice.actions;
+export const {colorSelection} = styleSlice.actions;
 export default styleSlice.reducer

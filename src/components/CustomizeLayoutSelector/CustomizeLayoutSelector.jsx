@@ -1,9 +1,17 @@
+import { colorSelection } from "@/redux/features/styleSlice";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const CustomizeLayoutSelector = () => {
   const [selectedLayout, setSelectedLayout] = useState("Top");
   const [selectedColumns, setSelectedColumns] = useState("Double");
-  const [selectColors, setSelectColors] = useState("bg-slate-700")
+  const [selectColors, setSelectColors] = useState("bg-slate-700");
+  const {layout, column, style} = useSelector((state) =>state.style);
+  const dispatch = useDispatch();
+  const handleColor = (color) =>{
+    setSelectColors(color);
+    dispatch(colorSelection(color))
+  }
 
   const layoutOptions = [
     { name: "Top", icon: "w-full h-1/2 pt-8 mb-4 bg-blue-500 rounded-t" },
@@ -17,14 +25,15 @@ const CustomizeLayoutSelector = () => {
     { name: "Triple", icon: "h-4 px-3 w-full bg-gray-300 rounded" },
   ];
   const colors = [
-    "bg-slate-500", "bg-slate-600", "bg-slate-800",
-    "bg-red-500", "bg-red-600", "bg-red-800",
-    "bg-blue-500", "bg-blue-600", "bg-blue-800",
-    "bg-green-500", "bg-green-600", "bg-green-800",
-    "bg-purple-500", "bg-purple-600", "bg-purple-800",
-    "bg-yellow-500", "bg-yellow-600", "bg-yellow-800",
-    "bg-teal-500", "bg-teal-600", "bg-teal-800",
-    "bg-pink-500", "bg-pink-600", "bg-pink-800",
+    "slate-500", "slate-600", "slate-800",
+    // "zinc-700", "zinc-800", "zinc-900",
+    "red-500", "red-600", "red-800",
+    "blue-500", "blue-600", "blue-800",
+    "green-500", "green-600", "green-800",
+    "purple-500", "purple-600", "purple-800",
+    "yellow-500", "yellow-600", "yellow-800",
+    "teal-500", "teal-600", "teal-800",
+    "pink-500", "pink-600", "pink-800",
 
   ];
   return (
@@ -102,11 +111,11 @@ const CustomizeLayoutSelector = () => {
         </div>
         <div className="mt-8">
             <h2 className="text-purple-800 text-2xl">Colors</h2>
-            <div className="grid grid-cols-4 md:grid-cols-10 gap-4 mt-8">
+            <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-4 mt-8">
             {
                 colors?.map((color,idx) =>(
-                    <div>
-                        <div onClick={() =>setSelectColors(color)} className={`${color} ${selectColors === color && 'border-2 border-purple-800'} p-4 w-2 h-2 rounded-full cursor-pointer`}></div>
+                    <div key={idx}>
+                        <div onClick={() =>handleColor(color)} className={`bg-${color} ${selectColors === color && 'border-2 border-purple-800'} p-4 w-2 h-2 rounded-full cursor-pointer`}></div>
                     </div>
                 ))
             }

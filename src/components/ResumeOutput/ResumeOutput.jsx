@@ -30,7 +30,7 @@ const ResumeOutput = () => {
   const dispatch = useDispatch()
   // console.log(socialLinks)
   // console.log(profileSection);
-  const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses, awards, organizations, publications, references,declaration, custom, pdf } = useSelector(
+  const { profile, experiences, skills, educations, languages, certificates, interests, projects, courses, awards, organizations, publications, references,declaration, custom, pdf, style } = useSelector(
     (state) => state
   );
   const generatePdf = () =>{
@@ -78,7 +78,7 @@ const ResumeOutput = () => {
 
   // console.log(experiences)
   return (
-    <div ref={resumeRef} className="p-8">
+    <div ref={resumeRef} className={`p-8 text-${style?.color}`}>
       {/* Personal Info */}
       <div>
         <h2
@@ -244,11 +244,11 @@ const ResumeOutput = () => {
       )}
       {awards[0] && (
         <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className={`font-semibold pb-2 border-b-2 border-b-slate-800`}>
             Awards
           </h3>
           {awards?.map((award) => (
-            <Award key={award?.id} award={award} />
+            <Award key={award?.id} award={award} style={style} />
           ))}
         </div>
       )}
