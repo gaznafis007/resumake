@@ -8,6 +8,7 @@ import ResumePersonalInfoForm from "../ResumePersonalInfoForm/ResumePersonalInfo
 
 const ResumePersonalInfo = () => {
   const {editSection, setEditSection} = useContext(ResumeInfoContext);
+  
   const handleRemoveEditSection = () =>{
     setEditSection('')
   }
