@@ -1,23 +1,29 @@
 'use client';
 import Button from '@/components/Button/Button';
 import DefaultButton from '@/components/DefaultButton/DefaultButton';
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Login = () => {
+    const dispatch = useDispatch();
+    const user = useSelector((state) =>state.user)
     const {register, handleSubmit, formState:{errors}} = useForm()
-    const handleLogin = (data) =>{
+    const handleLogin = async (data) =>{
         const email = data.email;
         const password = data.password;
-
-        const info = {
+        const res = await signIn('credentials', {
             email,
-            password
-        }
-        console.log(info)
+            password,
+            redirect: false
+        })
+    }
+    const handleGoogleLogin = async() =>{
+        const res = await signIn('google');
     }
     return (
         <div className='p-8 md:p-16 flex flex-col space-y-4'>
@@ -53,7 +59,7 @@ const Login = () => {
                         <Link href={'/register'} className="text-sm hover:underline text-purple-800 capitalize">create account?</Link>
                         <DefaultButton btnType={'type'}>Login</DefaultButton>
                     </form>
-                    <Button style={'px-4 py-2 bg-white text-black rounded-md block border border-slate-300 block w-full font-semibold'}>Login with <span className='text-blue-500'>Google</span></Button>
+                    <Button handler={handleGoogleLogin} style={'px-4 py-2 bg-white text-black rounded-md block border border-slate-300 block w-full font-semibold'}>Login with <span className='text-blue-500'>Google</span></Button>
                 </div>
             </div>
         </div>

@@ -23,9 +23,11 @@ const ResumeInfoProvider = ({
     }
     return (
         <ResumeInfoContext.Provider value={value}>
+            <SessionProvider>
             <Provider store={store}>
             {children}
             </Provider>
+            </SessionProvider>
         </ResumeInfoContext.Provider>
     );
 };

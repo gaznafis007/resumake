@@ -12,7 +12,7 @@ export const POST = async (req) =>{
             return NextResponse.json({message: 'user already exists', user:{...registeredUser}})
         }else{
             const result = await userCollection.insertOne(user);
-            console.log(result, 'this is result')
+            // console.log(result, 'this is result')
             return NextResponse.json(result)
         }
     }catch(error){
@@ -21,6 +21,15 @@ export const POST = async (req) =>{
     }
 }
 
-export const GET = () =>{
-    return NextResponse.json({message: 'hello users'})
+export const GET = async (req) =>{
+    const {searchParams} = new URL(req.url);
+    const email = searchParams.get('email');
+    if(!email){
+        return NextResponse.json({error: 'email is not provided'})
+    }
+    const db = await connectDB();
+    const userCollection = await db.collection('users');
+    const query = {email: email};
+    const result = await userCollection.findOne(query);
+    return NextResponse.json(result)
 }
