@@ -11,10 +11,13 @@ const styleSlice = createSlice({
     reducers:{
         colorSelection: (state, {payload}) =>{
             state.color=payload
+        },
+        layoutSelection: (state, {payload}) =>{
+            state.layout = payload
         }
     }
 })
 
 
-export const {colorSelection} = styleSlice.actions;
+export const {layoutSelection, colorSelection} = styleSlice.actions;
 export default styleSlice.reducer
