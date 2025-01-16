@@ -1,9 +1,11 @@
 'use client';
 import Button from '@/components/Button/Button';
 import DefaultButton from '@/components/DefaultButton/DefaultButton';
-import { signIn } from 'next-auth/react';
+import { loginUser } from '@/redux/features/userSLice';
+import { getSession, signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const Login = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) =>state.user)
+    const router = useRouter()
     const {register, handleSubmit, formState:{errors}} = useForm()
     const handleLogin = async (data) =>{
         const email = data.email;
@@ -21,9 +24,29 @@ const Login = () => {
             password,
             redirect: false
         })
+        if(res.ok){
+            const session = await getSession();
+            fetch(`/api/register?email=${email}`)
+            .then(res => res.json())
+            .then(userData =>{
+                // console.log(userData)
+                dispatch(loginUser({name:session?.user?.name, email: session?.user?.email}))
+                // console.log(session?.user)
+                router.push('/')
+            })
+        }
     }
     const handleGoogleLogin = async() =>{
         const res = await signIn('google');
+        if(res.ok){
+            const session = await getSession();
+            fetch(`/api/register?email=${email}`)
+            .then(res => res.json())
+            .then(userData =>{
+                dispatch(loginUser({name:session?.user?.name, email: session?.user?.email}))
+                router.push('/')
+            })
+        }
     }
     return (
         <div className='p-8 md:p-16 flex flex-col space-y-4'>

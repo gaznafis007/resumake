@@ -20,7 +20,7 @@ const Resumes = () => {
         <div className="mt-8 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3">
           <Link
             href={"/resumes/create"}
-            className="rounded-lg border border-slate-400 border-dashed p-6 flex flex-col items-center space-y-4"
+            className="rounded-lg border border-slate-400 hover:bg-slate-300 border-dashed p-6 flex flex-col items-center space-y-4"
           >
             <FiPlus className="text-slate-400 text-2xl" />
             <h2 className="text-slate-400 font-semibold">New Blank</h2>

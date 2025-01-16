@@ -1,10 +1,16 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import DefaultButton from "../DefaultButton/DefaultButton";
+import { signOut, useSession } from "next-auth/react";
 
 const Sidebar = () => {
   const pathname = usePathname();
+  const session = useSession();
+  const router = useRouter()
+  const handleRoute = (routeName) =>{
+    router.push(routeName)
+  }
   return (
     <div className="w-full md:w-1/5 p-6 bg-slate-300 text-slate-800 md:h-screen">
       <div className="flex flex-row md:flex-col justify-between md:h-full">
@@ -42,10 +48,19 @@ const Sidebar = () => {
           </Link>
         </div>
       </div>
-      <div className="flex flex-row md:flex-col md:space-y-4 space-x-4 md:space-x-0">
-        <DefaultButton><Link href={'/login'}>Login</Link></DefaultButton>
-        <DefaultButton><Link href={'/register'}>Register</Link></DefaultButton>
+      {
+        session?.status === 'authenticated' ? (
+          <div className="flex flex-row md:flex-col md:space-y-4 space-x-4 md:space-x-0">
+        <p className="text-slate-600 text-sm">{session?.data?.user?.name}</p>
+        <DefaultButton handler={() =>signOut()}>Logout</DefaultButton>
       </div>
+        ) : (
+          <div className="flex flex-row md:flex-col md:space-y-4 space-x-4 md:space-x-0">
+        <DefaultButton handler={handleRoute} params={'/login'}>Login</DefaultButton>
+        <DefaultButton handler={handleRoute} params={'/register'}>Register</DefaultButton>
+      </div>
+        )
+      }
       </div>
       <div className="flex flex-row space-x-4 md:hidden mt-4">
       <Link
