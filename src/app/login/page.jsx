@@ -8,12 +8,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 
 const Login = () => {
     const dispatch = useDispatch();
-    const user = useSelector((state) =>state.user)
     const router = useRouter()
     const {register, handleSubmit, formState:{errors}} = useForm()
     const handleLogin = async (data) =>{
@@ -24,16 +23,11 @@ const Login = () => {
             password,
             redirect: false
         })
+        console.log(res)
         if(res.ok){
             const session = await getSession();
-            fetch(`/api/register?email=${email}`)
-            .then(res => res.json())
-            .then(userData =>{
-                // console.log(userData)
-                dispatch(loginUser({name:session?.user?.name, email: session?.user?.email}))
-                // console.log(session?.user)
-                router.push('/')
-            })
+            dispatch(loginUser({name:session?.user?.name, email: session?.user?.email}))
+            router.push('/')
         }
     }
     const handleGoogleLogin = async() =>{
