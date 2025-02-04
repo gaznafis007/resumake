@@ -184,7 +184,7 @@ const ResumeOutput = () => {
       )}
       {projects[0] && (
         <div className="mt-2 space-y-1">
-          <h3 className="font-semibold text-zinc-800 pb-2 border-b-2 border-b-slate-800">
+          <h3 className={`font-semibold ${style?.color?.text ? style?.color?.text : 'text-zinc-800'} pb-2 border-b-2 border-b-slate-800`}>
             Projects
           </h3>
           {projects?.map((project) => (
