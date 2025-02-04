@@ -173,7 +173,7 @@ const ResumeOutput = () => {
       )}
       {skills.expertise && (
         <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className={`font-semibold pb-2 ${style?.color?.text ? style?.color?.text : 'text-zinc-800'} border-b-2 border-b-slate-800`}>
             Skills
           </h3>
           <Skills skills={skills} />
