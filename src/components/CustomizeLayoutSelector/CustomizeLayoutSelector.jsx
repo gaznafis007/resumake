@@ -9,7 +9,7 @@ const CustomizeLayoutSelector = () => {
   const {layout, column, style} = useSelector((state) =>state.style);
   const dispatch = useDispatch();
   const handleColor = (color) =>{
-    setSelectColors(color);
+    setSelectColors(color.bg);
     dispatch(colorSelection(color))
   }
 
@@ -25,17 +25,33 @@ const CustomizeLayoutSelector = () => {
     { name: "Triple", icon: "h-4 px-3 w-full bg-gray-300 rounded" },
   ];
   const colors = [
-    "slate-500", "slate-600", "slate-800",
-    // "zinc-700", "zinc-800", "zinc-900",
-    "red-500", "red-600", "red-800",
-    "blue-500", "blue-600", "blue-800",
-    "green-500", "green-600", "green-800",
-    "purple-500", "purple-600", "purple-800",
-    "yellow-500", "yellow-600", "yellow-800",
-    "teal-500", "teal-600", "teal-800",
-    "pink-500", "pink-600", "pink-800",
-
-  ];
+    { text: 'text-slate-500', bg: 'bg-slate-500' },
+    { text: 'text-slate-600', bg: 'bg-slate-600' },
+    { text: 'text-slate-800', bg: 'bg-slate-800' },
+    { text: 'text-red-500', bg: 'bg-red-500' },
+    { text: 'text-red-600', bg: 'bg-red-600' },
+    { text: 'text-red-800', bg: 'bg-red-800' },
+    { text: 'text-blue-500', bg: 'bg-blue-500' },
+    { text: 'text-blue-600', bg: 'bg-blue-600' },
+    { text: 'text-blue-800', bg: 'bg-blue-800' },
+    { text: 'text-green-500', bg: 'bg-green-500' },
+    { text: 'text-green-600', bg: 'bg-green-600' },
+    { text: 'text-green-800', bg: 'bg-green-800' },
+    { text: 'text-purple-500', bg: 'bg-purple-500' },
+    { text: 'text-purple-600', bg: 'bg-purple-600' },
+    { text: 'text-purple-800', bg: 'bg-purple-800' },
+    { text: 'text-yellow-500', bg: 'bg-yellow-500' },
+    { text: 'text-yellow-600', bg: 'bg-yellow-600' },
+    { text: 'text-yellow-800', bg: 'bg-yellow-800' },
+    { text: 'text-teal-500', bg: 'bg-teal-500' },
+    { text: 'text-teal-600', bg: 'bg-teal-600' },
+    { text: 'text-teal-800', bg: 'bg-teal-800' },
+    { text: 'text-pink-500', bg: 'bg-pink-500' },
+    { text: 'text-pink-600', bg: 'bg-pink-600' },
+    { text: 'text-pink-800', bg: 'bg-pink-800' }
+  ]
+  
+  ;
   return (
     <div className="space-y-4 p-6">
       {/* Layout Selector */}
@@ -115,7 +131,7 @@ const CustomizeLayoutSelector = () => {
             {
                 colors?.map((color,idx) =>(
                     <div key={idx}>
-                        <div onClick={() =>handleColor(color)} className={`bg-${color} ${selectColors === color && 'border-2 border-purple-800'} p-4 w-2 h-2 rounded-full cursor-pointer`}></div>
+                        <div onClick={() =>handleColor(color)} className={`${color.bg} ${selectColors === color.bg && 'border-2 border-purple-800'} p-4 w-2 h-2 rounded-full cursor-pointer`}></div>
                     </div>
                 ))
             }

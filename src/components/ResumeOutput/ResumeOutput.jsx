@@ -82,30 +82,30 @@ const ResumeOutput = () => {
       {/* Personal Info */}
       <div>
         <h2
-          className={`text-2xl text-zinc-800 text-center font-bold capitalize`}
+          className={`text-2xl ${style?.color?.text ? style?.color?.text : 'text-zinc-800'} text-center font-bold capitalize`}
         >
           {profile?.fullName}
         </h2>
-        <h2 className={`text-xl text-zinc-800 text-center capitalize`}>
+        <h2 className={`text-xl ${style?.color?.text ? style?.color?.text : 'text-zinc-800'} text-center capitalize`}>
           {profile?.jobTitle}
         </h2>
         <div className="flex flex-row items-center justify-center space-x-3 mt-2">
           {profile?.email && (
             <div className="flex flex-row items-center space-x-2">
-              <MdEmail className="text-zinc-800" />
-              <p className="text-zinc-800">{profile?.email}</p>
+              <MdEmail className={`${style?.color?.text ? style?.color?.text : 'text-zinc-800'}`}/>
+              <p className={`${style?.color?.text ? style?.color?.text : 'text-zinc-800'}`}>{profile?.email}</p>
             </div>
           )}
           {profile?.phone && (
             <div className="flex flex-row items-center space-x-2">
-              <MdCall className="text-zinc-800" />
-              <p className="text-zinc-800">{profile?.phone}</p>
+              <MdCall className={`${style?.color?.text ? style?.color?.text : 'text-zinc-800'}`} />
+              <p className={`${style?.color?.text ? style?.color?.text : 'text-zinc-800'}`}>{profile?.phone}</p>
             </div>
           )}
           {profile?.address && (
             <div className="flex flex-row  items-center space-x-2">
-              <FaLocationDot className="text-zinc-800" />
-              <p className="text-zinc-800">{profile?.address}</p>
+              <FaLocationDot className={`${style?.color?.text ? style?.color?.text : 'text-zinc-800'}`} />
+              <p className={`${style?.color?.text ? style?.color?.text : 'text-zinc-800'}`}>{profile?.address}</p>
             </div>
           )}
         </div>
@@ -121,27 +121,27 @@ const ResumeOutput = () => {
               {profile?.socialLinks?.map((link) => (
                 <div
                   key={link?.id}
-                  className="flex flex-row  items-center space-x-2 text-zinc-800"
+                  className={`flex flex-row  items-center space-x-2 ${style?.color?.text ? style?.color?.text : 'text-zinc-800'}`}
                 >
                   {link?.name == "Website" && (
-                    <FaLink className="text-zinc-800" />
+                    <FaLink className={`${style?.color?.text ? style?.color?.text : 'text-zinc-800'}`} />
                   )}
                   {link?.name == "GitHub" && (
-                    <FaGithub className="text-zinc-800" />
+                    <FaGithub className={`${style?.color?.text ? style?.color?.text : 'text-zinc-800'}`} />
                   )}
                   {link?.name == "LinkedIn" && (
-                    <FaLinkedinIn className="text-zinc-800" />
+                    <FaLinkedinIn className={`${style?.color?.text ? style?.color?.text : 'text-zinc-800'}`} />
                   )}
                   {link?.name == "Dribble" && (
                     <FaDribbble className="text-zinc-800" />
                   )}
                   {link?.name == "Behance" && (
-                    <FaBehance className="text-zinc-800" />
+                    <FaBehance className={`${style?.color?.text ? style?.color?.text : 'text-zinc-800'}`} />
                   )}
                   {link?.name == "Leetcode" && (
-                    <SiLeetcode className="text-zinc-800" />
+                    <SiLeetcode className={`${style?.color?.text ? style?.color?.text : 'text-zinc-800'}`} />
                   )}
-                  <a href={link?.url} className="text-zinc-800">
+                  <a href={link?.url} className={`${style?.color?.text ? style?.color?.text : 'text-zinc-800'}`}>
                     {link?.username}
                   </a>
                 </div>
@@ -153,17 +153,17 @@ const ResumeOutput = () => {
       {/* profile */}
       {profile?.description && (
         <div className="mt-2 space-y-1">
-          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className={`font-semibold pb-2 ${style?.color?.text ? style?.color?.text : 'text-zinc-800'} border-b-2 border-b-slate-800`}>
             Profile
           </h3>
-          <p className="mt-1 text-slate-800 text-justify">
+          <p className={`mt-1 ${style?.color?.text ? style?.color?.text : 'text-zinc-800'} text-justify`}>
             {profile?.description}
           </p>
         </div>
       )}
       {experiences[0] && (
         <div className="mt-2 flex flex-col space-y-2">
-          <h3 className="font-semibold pb-2 text-zinc-800 border-b-2 border-b-slate-800">
+          <h3 className={`font-semibold pb-2 ${style?.color?.text ? style?.color?.text : 'text-zinc-800'} border-b-2 border-b-slate-800`}>
             Experience
           </h3>
           {experiences?.map((experience) => (
