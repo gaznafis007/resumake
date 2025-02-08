@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# 📝 Resumake  
 
-First, run the development server:
+![Resumake](https://img.shields.io/badge/Resumake-%23000000.svg?&style=for-the-badge&logo=vercel&logoColor=white)  
+A modern **resume builder** that allows users to **create, customize, and download professional resumes** effortlessly. Built with **React.js**, **Next.js**, and **TailwindCSS**, this tool ensures a **smooth and responsive** user experience.  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+🔗 **Live Website**: [Resumake](https://resumake-nu.vercel.app/)  
+📂 **Repository**: [GitHub](https://github.com/gaznafis007/resumake)  
+
+---
+
+## 🚀 Features  
+
+✅ **Create Custom Resumes** – Input personal and professional details dynamically.  
+✅ **Live Preview** – See real-time changes as you edit your resume.  
+✅ **Multiple Templates** – Choose from a variety of clean and professional designs.  
+✅ **Download as PDF** – Export your resume in high-quality **PDF format**.  
+✅ **User Authentication** – Secure login/signup using **Firebase Authentication**.  
+✅ **Fully Responsive** – Optimized for all devices, from mobile to desktop.  
+
+---
+
+## 🛠️ Tech Stack  
+
+### **Frontend**  
+![React](https://img.shields.io/badge/React-%2361DAFB.svg?&style=for-the-badge&logo=react&logoColor=black)  
+![Next.js](https://img.shields.io/badge/Next.js-%23000000.svg?&style=for-the-badge&logo=next.js&logoColor=white)  
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-%2306B6D4.svg?&style=for-the-badge&logo=tailwindcss&logoColor=white)  
+
+### **Backend & Database**  
+![MongoDB](https://img.shields.io/badge/MongoDB-%2347A248.svg?&style=for-the-badge&logo=mongodb&logoColor=white)  
+
+### **Others**  
+![PDF Generation](https://img.shields.io/badge/PDF%20Export-%23000000.svg?&style=for-the-badge)  
+![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?&style=for-the-badge&logo=vercel&logoColor=white)  
+
+---
+
+## 📸 Screenshots  
+
+### 🏠 Home Page  
+🚀 *[Add a screenshot of the homepage]*  
+
+### 📄 Resume Preview  
+📌 *[Add a screenshot of the resume preview page]*  
+
+---
+
+## 🔧 Installation & Setup  
+
+### **Clone the Repository**  
+```sh
+git clone https://github.com/gaznafis007/resumake.git
+cd resumake
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **Install Dependencies**  
+```sh
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### **Setup Environment Variables**  
+Create a `.env.local` file in the root directory and add the following:  
+```env
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+NEXT_PUBLIC_DB_USER=your_database_username
+NEXT_PUBLIC_DB_PASS=your_database_cluter_password
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_next_auth_google_client_id
+NEXT_PUBLIC_GOOGLE_CLIENT_SECRET=your_next_auth_google_client_secret
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **Run the Development Server**  
+```sh
+npm run dev
+```
+The project will now be available at `http://localhost:3000/`.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📬 Contact  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If you have any questions or suggestions, feel free to reach out:  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Gazi%20Nafis-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gazi-nafis-4712771a4/)  
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit%20my%20website-%23000000.svg?&style=for-the-badge&logo=vercel&logoColor=white)](https://gazi-nafis-rafi.vercel.app/)  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+⭐ **If you find this project helpful, don't forget to star the repository!** ⭐  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+### **What’s Included in This README?**  
+✅ **Live Demo & GitHub Links**  
+✅ **Clear Feature List**  
+✅ **Technology Stack with Icons**  
+✅ **Screenshots Placeholder (Add your own images)**  
+✅ **Detailed Installation Guide**  
+✅ **Environment Variables Setup**  
+✅ **Contact & Social Media Links**  
